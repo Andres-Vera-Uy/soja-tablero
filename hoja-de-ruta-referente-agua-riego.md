@@ -74,7 +74,7 @@ Evidencia:
 
 > Esta sección corrige y amplía la anterior con una investigación dirigida por institución (julio 2026). Ordena a los referentes por **dónde y qué publican** (revista, cuartil, coautorías internacionales), no por su posición institucional. **Aviso de método:** ningún h-index ni conteo de citas pudo verificarse — Google Scholar, ResearchGate y ScienceDirect bloquearon el acceso automático (HTTP 403). No se reporta ninguna métrica numérica porque no se vio ninguna.
 
-**Hallazgo central:** al ordenar por publicación, aparecen dos referentes que la Fase 1.2 no había capturado — **Gonzalo Carracelas** y **Francisco Montoya** — y se confirma que **Pablo Morales sí tiene producción verificable** (el informe original lo había dejado como [?]).
+**Hallazgo central:** al ordenar por publicación, aparecen dos referentes que la Fase 1.2 no había capturado — **Gonzalo Carracelas** y **Francisco Montoya** — ambos con producción Q1 internacional real. (Sobre Pablo Morales, ver la corrección más abajo: **no** califica como referente — sin doctorado y sin publicación de peso.)
 
 ### INIA — mayor producción Q1 en agua agrícola
 
@@ -95,7 +95,9 @@ Evidencia:
 | **Luis Giménez** | Producción Vegetal, EEMAC (Paysandú) | El FAGRO con más proyección internacional: *Water*/MDPI (2016, 2017) y *Agronomy Journal* (2019); AquaCrop/SIMDualKc, déficit hídrico en maíz/soja. |
 | **Mario García Petillo** | Suelos y Aguas, Hidrología | Rol fundacional (seminario internacional de riego con su nombre); *Spanish Journal of Agricultural Research* (citrus/ETc, con Castel-IVIA) + canal nacional. |
 | **Lucía Puppo** | Suelos y Aguas, Hidrología | Coautora "puente" muy prolífica en canal nacional; ET de referencia, WinSRFR, pasturas. |
-| **R. M. Hayashi / Pablo Morales / A. Beretta** | Suelos y Aguas, Hidrología | Riego superficial (melgas/surcos), modelación **WinSRFR**, productividad del agua; sobre todo *Agrociencia Uruguay*. **Pablo Morales: producción verificada (corrige el [?] original).** |
+| **Agustín Beretta / R. M. Hayashi** | Suelos y Aguas, Hidrología | Línea de riego superficial (melgas/surcos) y modelación **WinSRFR**; producción en canal nacional (*Agrociencia Uruguay*). Es trabajo técnico útil, **no** producción de referente internacional. |
+
+> **Corrección (aporte del consultante, ground-truth local):** en la Unidad de Hidrología, **Pablo Morales NO terminó el doctorado y no publica en revistas de peso**, por lo que **no corresponde listarlo como referente por producción publicada** — un error de la versión previa de este informe. La búsqueda web solo confirmaba que *existían* artículos con su nombre en *Agrociencia Uruguay* (revista nacional, no Q1), lo cual es una barra insuficiente: "tener un par de papers nacionales" ≠ "ser referente". Sin doctorado y sin publicación indexada de alto cuartil, no cumple el criterio. Esto ilustra un límite real del método: un agente web no puede ver "no completó el PhD"; el conocimiento de campo del consultante sí, y prevalece.
 
 ### IMFIA (Fac. de Ingeniería) — hidrología "dura", no riego de cultivos
 
