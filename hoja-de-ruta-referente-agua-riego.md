@@ -64,9 +64,62 @@ Evidencia:
 ### Pablo Morales, IMFIA (Fac. de Ingeniería), MGAP, consultoría, organismos internacionales
 - **Estado [?]:** el proceso de verificación **no confirmó perfiles individuales** para Pablo Morales ni para figuras específicas del IMFIA en la ventana de búsqueda. No voy a inventar datos. Lo que sí es sólido estructuralmente:
   - **IMFIA** (Instituto de Mecánica de los Fluidos e Ingeniería Ambiental, Fac. de Ingeniería) es el polo uruguayo de **hidrología, hidráulica y modelación de recursos hídricos** — el complemento "duro" (ingeniería del agua) de tu perfil agronómico. Colaborar con IMFIA es una jugada de diferenciación (ver Fase 4).
-  - **MGAP / DGRN / RENARE** es el ámbito de la **política pública del agua y riego** (Ley de Riego 2017, promoción de embalses multipredial). Es donde la ciencia se vuelve impacto nacional.
+  - **MGAP / DGRN / RENARE** es el ámbito de la **política pública del agua y riego** (Ley de Riego N° 16.858 de 1997, modificada por la N° 19.553 de 2017; promoción de embalses multipredial). Es donde la ciencia se vuelve impacto nacional.
 
 > **Acción implícita nº1:** las lagunas [?] de esta fase no son un fallo del informe — son tu *tarea de campo*. Entrevistar a García Petillo, Giménez, García y Otero sobre sus propias cronologías (¿a qué edad saliste?, ¿por qué Brasil/España/EE.UU.?, ¿qué harías distinto?) te dará el dato que ninguna búsqueda web tiene, y de paso construye la relación de mentoría que la evidencia señala como decisiva (Fase 3).
+
+---
+
+## 1.3 Referentes por PRODUCCIÓN PUBLICADA (no por cargo) — investigación ampliada
+
+> Esta sección corrige y amplía la anterior con una investigación dirigida por institución (julio 2026). Ordena a los referentes por **dónde y qué publican** (revista, cuartil, coautorías internacionales), no por su posición institucional. **Aviso de método:** ningún h-index ni conteo de citas pudo verificarse — Google Scholar, ResearchGate y ScienceDirect bloquearon el acceso automático (HTTP 403). No se reporta ninguna métrica numérica porque no se vio ninguna.
+
+**Hallazgo central:** al ordenar por publicación, aparecen dos referentes que la Fase 1.2 no había capturado — **Gonzalo Carracelas** y **Francisco Montoya** — y se confirma que **Pablo Morales sí tiene producción verificable** (el informe original lo había dejado como [?]).
+
+### INIA — mayor producción Q1 en agua agrícola
+
+| Investigador | Estación / línea | Evidencia de referencia (publicación) |
+|---|---|---|
+| **Gonzalo Carracelas** | Arroz (Treinta y Tres) | El de mayor peso internacional: 1er autor en *Agricultural Water Management* (Q1, 2019, productividad del agua y AWD en arroz); coautor con **Cassman y Grassini** (U. Nebraska) en *Field Crops Research* (2023). |
+| **Francisco Montoya** | Riego (Salto Grande) | 1er autor en *Agricultural Water Management* 193:30-45 (Q1, 2017, riego de soja) y en *Agronomy Journal* (2019). |
+| **Álvaro Otero** | Salto Grande (cítricos, pasturas, ET) | Coautor recurrente en los AWM/AgronJ; ET de referencia y riego del litoral. |
+| **Claudio García** | Las Brujas (riego, histórico) | Vínculo Q1 vía coautoría AWM 2017; volumen propio en Series Técnicas INIA (editor de la N°232). |
+| **Álvaro Roel** | Arroz (T. y Tres); PhD EE.UU. | Agricultura de precisión en arroz (lámina de agua como factor); *Agronomy Journal*, *Scientific Reports*. |
+| **M. Cristina Capurro** | Arroz (T. y Tres) | Nexo riego–emisiones (metano/N₂O). *Afiliación de investigación: INIA (docencia de posgrado en FAGRO).* |
+| **José Terra** | Arroz–pasturas (T. y Tres); PhD Auburn | Sistemas arroceros inundados, C/N, calidad de agua. |
+
+### FAGRO (UdelaR) — dos núcleos
+
+| Investigador | Depto. / línea | Evidencia de referencia (publicación) |
+|---|---|---|
+| **Luis Giménez** | Producción Vegetal, EEMAC (Paysandú) | El FAGRO con más proyección internacional: *Water*/MDPI (2016, 2017) y *Agronomy Journal* (2019); AquaCrop/SIMDualKc, déficit hídrico en maíz/soja. |
+| **Mario García Petillo** | Suelos y Aguas, Hidrología | Rol fundacional (seminario internacional de riego con su nombre); *Spanish Journal of Agricultural Research* (citrus/ETc, con Castel-IVIA) + canal nacional. |
+| **Lucía Puppo** | Suelos y Aguas, Hidrología | Coautora "puente" muy prolífica en canal nacional; ET de referencia, WinSRFR, pasturas. |
+| **R. M. Hayashi / Pablo Morales / A. Beretta** | Suelos y Aguas, Hidrología | Riego superficial (melgas/surcos), modelación **WinSRFR**, productividad del agua; sobre todo *Agrociencia Uruguay*. **Pablo Morales: producción verificada (corrige el [?] original).** |
+
+### IMFIA (Fac. de Ingeniería) — hidrología "dura", no riego de cultivos
+
+Publican **más y mejor en revistas internacionales**, pero en **hidrología/hidráulica de cuencas, clima y calidad de agua** — *no* en riego/drenaje agrícola. Estratégicamente son el **socio de diferenciación** (flanco ingenieril).
+- **Angela Gorgoglione** — la de mayor producción internacional del grupo (*Water*/MDPI, *Sustainability*, *ESPR*); modelación hidrológica y calidad de agua con machine learning.
+- **Luis Silveira** — referente histórico; forestación y rendimiento hídrico en *Hydrological Processes* (la línea IMFIA más cercana a "agua y producción").
+- **Christian Chreties** — lluvia-escorrentía, crecidas, alerta temprana. **Rafael Terra** — hidroclimatología (ENSO), pronóstico aplicado.
+
+### CENUR Litoral Norte / Depto. del Agua (Salto)
+- **Pablo Gamazo** — el más productivo del norte en **aguas subterráneas** (Acuífero Guaraní, Salto-Arapey); interfaz agrícola: esos acuíferos abastecen el riego hortícola de Salto. Sede también de la **Licenciatura en Recursos Hídricos y Riego**.
+- **Elena Alvareda** — hidroquímica y calidad de agua subterránea.
+
+### MGAP / DGRN
+Produce **documentos técnicos**, no papers arbitrados. El de referencia: **Molfino & Califra (2001), "Agua disponible de las Tierras del Uruguay"** — base del mapa de agua disponible por grupos CONEAT (Califra tiene además CV en FAGRO: solapamiento MGAP-FAGRO).
+
+### Top de instituciones nacionales del área (por producción publicada)
+1. **INIA** — #1 en Q1 de agua agrícola; polos: **Arroz (Treinta y Tres)** —el subcampo uruguayo de mayor impacto internacional, ligado a Nebraska— y **riego de extensivos/frutales (Salto Grande)**.
+2. **FAGRO (UdelaR)** — Suelos y Aguas (Hidrología, Montevideo) + Producción Vegetal (EEMAC, Paysandú); nodo de formación.
+3. **IMFIA (Fac. de Ingeniería)** — hidrología/hidráulica "dura"; socio de diferenciación.
+4. **CENUR Litoral Norte / Depto. del Agua (Salto)** — aguas subterráneas + Licenciatura en Recursos Hídricos y Riego.
+5. **MGAP / DGRN** — política del agua y riego (Ley N° 16.858/1997 mod. N° 19.553/2017), agua disponible de suelos.
+6. **UTEC** — Ingeniería en Agua y Desarrollo Sostenible (formación emergente).
+
+> **Lectura estratégica:** para impacto *publicado internacionalmente*, el modelo más exitoso hoy en Uruguay es el del **grupo arrocero de INIA (Carracelas, Roel, Terra) apalancado en la colaboración con la Universidad de Nebraska**. Desde FAGRO, **Luis Giménez** (EEMAC) es el modelo interno más cercano a "referente con publicación internacional real".
 
 ---
 
@@ -140,7 +193,7 @@ No tengo evidencia de que salir al exterior *cause* el éxito; sí de que casi t
 1. **Estás dentro del nodo correcto.** El patrón nº1 verificado es el eje INIA↔FAGRO. Tú ya estás *dentro* de FAGRO, en la cátedra temática exacta. La mayoría de aspirantes tiene que *entrar*; tú tienes que *aprovechar*.
 2. **Acceso directo a los referentes nacionales.** García Petillo y Giménez son colegas/mentores potenciales a distancia de un pasillo. Esto es raro y perecedero.
 3. **Edad óptima (26).** El estudio de Nature sitúa la ventana crítica en los **primeros 5 años de carrera**. Estás dentro de ella *ahora*. En 3-4 años se cierra.
-4. **Ventaja de nicho geográfico.** Uruguay tiene riego en expansión (Ley de Riego 2017, arroz, soja, lechería, hortícolas) y **relativamente pocos especialistas**. Ser el referente nacional es alcanzable de forma realista, y eso es plataforma para lo internacional.
+4. **Ventaja de nicho geográfico.** Uruguay tiene riego en expansión (Ley de Riego N° 16.858/1997 mod. N° 19.553/2017, arroz, soja, lechería, hortícolas) y **relativamente pocos especialistas**. Ser el referente nacional es alcanzable de forma realista, y eso es plataforma para lo internacional.
 5. **Idioma y afinidad con el mundo iberoamericano** (Fereres/Córdoba, redes españolas y del Cono Sur).
 
 ## 4.2 Brechas respecto a los referentes
