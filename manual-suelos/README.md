@@ -1,9 +1,9 @@
 # Manual de Suelos del Uruguay
 
-Manual PDF de divulgación (31 páginas, A4) con todos los grandes grupos de suelo
+Manual PDF de divulgación (33 páginas, A4) con todos los grandes grupos de suelo
 del Uruguay: composición, dónde aparecen, para qué sirven, clasificación nacional
 (Altamirano et al. 1976, rev. 2007), correlación internacional (WRB 2022 y USDA
-Soil Taxonomy), CONEAT, conservación y guía de diagnóstico.
+Soil Taxonomy), CONEAT, conservación, hidrología y drenaje de suelos (constantes hídricas, balance, clases de drenaje y grupos hidrológicos de Durán 1997, con bibliografía citada) y guía de diagnóstico.
 
 - **`manual-suelos-uruguay.pdf`** — el manual listo para leer o imprimir.
 - **`manual-suelos-uruguay.html`** — la fuente: todo el contenido, el diseño (CSS)

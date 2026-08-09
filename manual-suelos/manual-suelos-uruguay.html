@@ -266,6 +266,7 @@ ul.puntos li::before{content:"";position:absolute;left:.4mm;top:1.55mm;width:1.7
     <div class="toc">
       <div class="trow"><span class="tcapnum">1</span><span class="tname">Entender el suelo</span><span class="tdots"></span><span class="tnum" data-ref="cap1"></span></div>
       <div class="trow sub"><span class="tname">Qué es · cómo se forma · el perfil y sus horizontes · textura, pH y otras propiedades</span><span class="tdots"></span><span class="tnum"></span></div>
+      <div class="trow sub"><span class="tname">El agua en el suelo: constantes hídricas, balance, drenaje y grupos hidrológicos</span><span class="tdots"></span><span class="tnum" data-ref="agua"></span></div>
       <div class="trow"><span class="tcapnum">2</span><span class="tname">La clasificación uruguaya y las regiones de suelo</span><span class="tdots"></span><span class="tnum" data-ref="cap2"></span></div>
       <div class="trow"><span class="tcapnum">3</span><span class="tname">Fichas: los suelos del Uruguay, uno por uno</span><span class="tdots"></span><span class="tnum" data-ref="fichas"></span></div>
       <div class="trow sub"><span class="tname">Brunosol · Vertisol · Argisol · Planosol · Luvisol · Acrisol · Litosol · Inceptisol · Arenosol · Fluvisol · Gleysol · Histosol · suelos halomórficos</span><span class="tdots"></span><span class="tnum"></span></div>
@@ -525,7 +526,9 @@ ul.puntos li::before{content:"";position:absolute;left:.4mm;top:1.55mm;width:1.7
         <h2>Drenaje</h2>
         <p>Qué tan rápido se va el agua de más. Va de <strong>bien drenado</strong> (basalto profundo de
         laderas) a <strong>muy pobremente drenado</strong> (bañados). Los colores lo delatan: pardos y
-        rojizos = aireado; grises y moteados = agua estancada (gley).</p>
+        rojizos = aireado; grises y moteados = agua estancada (gley). La hidrología completa — cuánta
+        agua guarda el suelo, el balance hídrico, las clases de drenaje y el escurrimiento — se
+        desarrolla en las dos páginas siguientes.</p>
       </div>
     </div>
     <h2>Valores de referencia rápidos (0–15 cm)</h2>
@@ -538,6 +541,152 @@ ul.puntos li::before{content:"";position:absolute;left:.4mm;top:1.55mm;width:1.7
     </table>
     <p class="small" style="margin-top:2mm">Rangos orientativos de uso corriente en Uruguay (INIA / FUCREA / Facultad de
     Agronomía). La recomendación fina siempre la hace un técnico con el análisis, el cultivo y la historia de la chacra.</p>
+  </div>
+</section>
+
+<!-- ══════════════════ CAP 1 · AGUA I ══════════════════ -->
+<section class="page" id="agua" data-cap="Cap. 1 · El agua en el suelo">
+  <div class="pad">
+    <div class="kicker">Capítulo 1 · continuación — hidrología del suelo</div>
+    <h1 class="cap" style="font-size:20pt">El agua en el suelo: el reservorio invisible</h1>
+    <p class="lede">Entre la lluvia y la planta hay un intermediario: los poros del suelo. Cuánta agua
+    entra, cuánta queda retenida y cuánta sigue de largo es — junto con la profundidad — lo que separa
+    un campo que aguanta enero de uno que se quema.</p>
+    <div class="grid2">
+      <div>
+        <h2 style="margin-top:0">Las constantes hídricas</h2>
+        <p>Después de una lluvia que satura el perfil, el agua de los poros grandes drena por gravedad
+        en uno o dos días: el suelo queda en <strong>capacidad de campo (CC)</strong>, reteniendo agua a
+        una succión de referencia de −33 kPa (−10 kPa en arenosos). Las raíces extraen de ahí hacia
+        abajo, hasta el <strong>punto de marchitez permanente (PMP, −1500 kPa)</strong>, donde el agua
+        restante queda atrapada con demasiada fuerza. La diferencia es el <strong>agua disponible
+        (AD = CC − PMP)</strong>: el tanque útil del suelo.</p>
+        <p class="small">Las curvas de retención de los suelos del país fueron medidas sobre 240 muestras
+        de 48 suelos a −10, −33, −100 y −1500 kPa, relacionándolas con textura y materia orgánica
+        (Silva, Ponce de León, García y Durán, 1988 — Boletín de Investigación Nº 10, Facultad de
+        Agronomía).</p>
+        <svg viewBox="0 0 100 62" width="100%" xmlns="http://www.w3.org/2000/svg" style="margin-top:1mm">
+          <rect x="6" y="4" width="26" height="12" fill="#4E7D8C"/>
+          <rect x="6" y="16" width="26" height="24" fill="#7FA3AD"/>
+          <rect x="6" y="40" width="26" height="12" fill="#CFC5AE"/>
+          <rect x="6" y="4" width="26" height="48" fill="none" stroke="#452A17" stroke-width=".8"/>
+          <g stroke="#452A17" stroke-width=".5"><path d="M32,16 L38,16 M32,40 L38,40"/></g>
+          <g font-family="Inter" font-size="3.7" fill="#2B2118">
+            <text x="39" y="8.5" font-weight="700">Saturación — poros llenos</text>
+            <text x="39" y="13" fill="#584736">el exceso drena en 1–2 días</text>
+            <text x="39" y="17.6" font-weight="700">Capacidad de campo · −33 kPa</text>
+            <text x="39" y="28.5" font-weight="700" fill="#39512A">AGUA DISPONIBLE (AD)</text>
+            <text x="39" y="33" fill="#584736">la reserva que usan las raíces</text>
+            <text x="39" y="41.6" font-weight="700">P. de marchitez · −1500 kPa</text>
+            <text x="39" y="46.5" fill="#584736">agua retenida, no disponible</text>
+          </g>
+        </svg>
+      </div>
+      <div>
+        <h2 style="margin-top:0">¿Cuánta agua guarda cada suelo?</h2>
+        <p>Depende de la <strong>textura</strong> (los poros medianos de limos y francos retienen más agua
+        útil que la arena, que drena, y que la arcilla, que retiene fuerte pero cede menos), de la
+        <strong>materia orgánica</strong> (esponja extra) y sobre todo de la <strong>profundidad</strong>
+        explorable por raíces. Valores típicos de AD, por metro de suelo: arenosos ~60–100 mm; francos
+        ~140–180 mm; franco limosos hasta ~200 mm; arcillosos ~120–160 mm.</p>
+        <p>Para el Uruguay, la referencia es <strong>«Agua disponible de las tierras del Uruguay»</strong>
+        (Molfino y Califra, 2001, División Suelos y Aguas – MGAP): estimó la AD de las 99 asociaciones de
+        la Carta 1:1.000.000 sobre unos 200 perfiles, y su método se usa también para asignar agua
+        disponible a cada grupo CONEAT. La lección práctica es brutal: un Litosol de 15 cm guarda
+        20–30 mm — una semana de enero — mientras un Brunosol profundo del litoral supera los 140 mm.</p>
+        <h2>El balance hídrico</h2>
+        <p>Llueven ~1.200–1.400 mm/año bien repartidos, pero la evapotranspiración de diciembre a febrero
+        supera la lluvia: el país vive de <strong>excesos de invierno y déficits de verano</strong>, y la AD
+        del suelo es el colchón entre ambos. El balance estándar se calcula con la evapotranspiración de
+        referencia de Penman-Monteith (FAO 56: Allen, Pereira, Raes y Smith, 1998); INIA–GRAS publica
+        balances hídricos periódicos con esa base para todo el país.</p>
+      </div>
+    </div>
+    <svg viewBox="0 0 178 40" width="100%" xmlns="http://www.w3.org/2000/svg" style="margin-top:2mm">
+      <rect x="4" y="22" width="170" height="12" fill="#5B3A24"/>
+      <rect x="4" y="19" width="170" height="3" fill="#33251A"/>
+      <path d="M4,19 L174,19" stroke="#39512A" stroke-width="1.6"/>
+      <rect x="4" y="34" width="170" height="3" fill="#8A6B43"/>
+      <g font-family="Inter" font-size="4" font-weight="600">
+        <text x="22" y="6" fill="#4E7D8C">Lluvia ↓</text>
+        <text x="58" y="6" fill="#B97F14">Evapotranspiración ↑</text>
+        <text x="130" y="12.5" fill="#A34F2E">Escurrimiento →</text>
+        <text x="160" y="31.5" fill="#F3E9D5" text-anchor="end">Percolación ↓</text>
+        <text x="12" y="30.5" fill="#F3E9D5">RESERVA DEL SUELO (AD)</text>
+      </g>
+      <g stroke="#4E7D8C" stroke-width="1"><path d="M26,8 L26,17 M31,8 L31,17 M36,8 L36,17"/></g>
+      <g stroke="#B97F14" stroke-width="1"><path d="M72,17 L72,8 M77,17 L77,8"/></g>
+      <path d="M120,16.2 L152,16.2" stroke="#A34F2E" stroke-width="1.2"/>
+      <path d="M152,16.2 l-3,-1.6 v3.2 Z" fill="#A34F2E"/>
+      <path d="M160,24 L160,33" stroke="#F3E9D5" stroke-width="1"/>
+      <path d="M160,33 l-1.6,-3 h3.2 Z" fill="#F3E9D5"/>
+    </svg>
+    <p class="small" style="margin-top:1mm">El destino de cada milímetro de lluvia: entra (infiltración),
+    se guarda (AD), vuelve al aire (evapotranspiración), corre (escurrimiento) o sigue de largo a la napa
+    (percolación). El drenaje y el escurrimiento — la parte que se va — siguen en la página que viene.</p>
+  </div>
+</section>
+
+<!-- ══════════════════ CAP 1 · AGUA II ══════════════════ -->
+<section class="page compact" data-cap="Cap. 1 · El agua en el suelo">
+  <div class="pad">
+    <div class="kicker">Capítulo 1 · continuación — hidrología del suelo</div>
+    <h1 class="cap" style="font-size:20pt">Drenaje y escurrimiento</h1>
+    <div class="grid2">
+      <div>
+        <h2 style="margin-top:0">Las clases de drenaje</h2>
+        <p>La descripción estándar de perfiles (Manual de Descripción y Muestreo de Suelos, MGAP–DGRN,
+        siguiendo el <i>Soil Survey Manual</i> del USDA) reconoce siete clases, que se leen en el campo por
+        los colores: matrices pardas y rojizas delatan aireación; grises, moteados y concreciones de
+        hierro-manganeso (rasgos redoximórficos) delatan saturación.</p>
+        <table class="tbl">
+          <tr><th>Clase</th><th>Suelo uruguayo típico</th></tr>
+          <tr><td><b>Excesivamente drenado</b></td><td>Litosoles de ladera, gravillosos</td></tr>
+          <tr><td><b>Algo excesivamente drenado</b></td><td>Arenosoles costeros</td></tr>
+          <tr><td><b>Bien drenado</b></td><td>Brunosoles de basalto y cristalino en ladera</td></tr>
+          <tr><td><b>Moderadamente bien drenado</b></td><td>Brunosoles lúvicos, Vertisoles de ladera suave</td></tr>
+          <tr><td><b>Imperfectamente drenado</b></td><td>Argisoles y Planosoles de lomadas y llanuras</td></tr>
+          <tr><td><b>Pobremente drenado</b></td><td>Gleysoles de depresiones y planicies bajas</td></tr>
+          <tr><td><b>Muy pobremente drenado</b></td><td>Histosoles y bañados permanentes</td></tr>
+        </table>
+        <h2>Napa freática y napa colgada</h2>
+        <p>No es lo mismo: la <strong>napa freática</strong> es el agua subterránea general, que sube y baja
+        estacionalmente (Gleysoles, Fluvisoles); la <strong>napa colgada</strong> es agua de lluvia detenida
+        sobre un horizonte casi impermeable — el Bt del Planosol — con el resto del perfil seco por debajo.
+        El diagnóstico cambia el remedio: la colgada se maneja con drenaje superficial y cultivos de ciclo
+        ajustado; la freática, con drenes profundos… cuando es legal y paga.</p>
+      </div>
+      <div>
+        <h2 style="margin-top:0">Grupos hidrológicos y Número de Curva</h2>
+        <p>Para estimar cuánto llueve y cuánto escurre, el método más usado en proyectos de aguadas,
+        embalses y represas es el <strong>Número de Curva (CN)</strong> del SCS/NRCS de EE.UU. (National
+        Engineering Handbook, Parte 630), que arranca clasificando los suelos en cuatro <strong>grupos
+        hidrológicos</strong>: de A (infiltra mucho, escurre poco) a D (infiltra poco, escurre mucho).</p>
+        <p><strong>Durán (1997, <i>Agrociencia</i> 1(1): 15–29)</strong> clasificó los suelos dominantes de la
+        Carta de Reconocimiento en esos grupos, apoyándose en la morfología del perfil (secuencia de
+        horizontes, textura, estructura, moteados y concreciones):</p>
+        <table class="tbl">
+          <tr><th>Grupo</th><th>Escurrimiento</th><th>Suelos del Uruguay (Durán, 1997)</th></tr>
+          <tr><td><b>A</b></td><td>Mínimo</td><td>Muy escasos: Arenosoles y suelos muy gravillosos</td></tr>
+          <tr><td><b>B</b></td><td>Bajo</td><td>Brunosoles Subéutricos bien a moderadamente bien drenados</td></tr>
+          <tr><td><b>C</b></td><td>Medio-alto</td><td>Brunosoles Éutricos y Subéutricos más pesados; Argisoles</td></tr>
+          <tr><td><b>D</b></td><td>Alto</td><td>Todos los Vertisoles, Planosoles y Gleysoles (y, por definición NRCS, los muy superficiales o con napa alta)</td></tr>
+        </table>
+        <p class="small" style="margin-top:1.5mm">Traducción práctica: buena parte del país escurre como
+        C–D — arcillas pesadas, Bt densos o poca profundidad; el Número de Curva nacional casi nunca
+        es optimista.</p>
+        <h2>Manejar el agua, no pelearla</h2>
+        <ul class="puntos">
+          <li><b>Arroz:</b> las taipas y la lámina de riego aprovechan el piso impermeable del Planosol; el agua se conduce, recircula y se devuelve controlada.</li>
+          <li><b>Drenaje superficial</b> en bajos productivos: nivelación, desagües empastados, evitar la zanja "a ojo" que termina en cárcava.</li>
+          <li><b>Riego suplementario:</b> dimensionarlo exige conocer la AD del suelo y el balance FAO 56 — regar sin ese dato es adivinar.</li>
+          <li><b>Lo que no se drena:</b> los humedales protegidos valen más que la hectárea ganada.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="nota"><b>Bibliografía de esta sección:</b> Silva, Ponce de León, García y Durán (1988) ·
+    Durán (1997) · Molfino y Califra (2001) · Allen et al. (1998, FAO 56) · USDA–NRCS (NEH 630) —
+    completas en la página de fuentes.</div>
   </div>
 </section>
 <!-- ══════════════════ CAP 2 · CLASIFICACIÓN URUGUAYA ══════════════════ -->
@@ -918,7 +1067,7 @@ ul.puntos li::before{content:"";position:absolute;left:.4mm;top:1.55mm;width:1.7
       <div class="capnum">6</div>
       <div>
         <div class="kicker">Capítulo seis</div>
-        <h1 class="cap" style="margin-bottom:0">Usar sin gastar: erosión, ley y buenas prácticas</h1>
+        <h1 class="cap" style="margin-bottom:0;font-size:19pt">Usar sin gastar: erosión, ley y buenas prácticas</h1>
       </div>
     </div>
     <p class="lede">El suelo se forma a ritmo de siglos y se pierde a ritmo de tormentas. La erosión
@@ -929,10 +1078,13 @@ ul.puntos li::before{content:"";position:absolute;left:.4mm;top:1.55mm;width:1.7
         <h2 style="margin-top:0">La erosión, en corto</h2>
         <p>Cada lluvia sobre suelo desnudo arranca partículas y se las lleva ladera abajo: primero en
         láminas invisibles, después en surcos, al final en cárcavas. Se pierde justo lo mejor — el
-        horizonte A con su materia orgánica. La ecuación universal <strong>USLE/RUSLE</strong> la estima
-        multiplicando lluvia × suelo × pendiente × cultivo × prácticas: en Uruguay se usa para que cada
-        chacra demuestre que pierde menos de la <strong>tolerancia (~7 toneladas por hectárea y por año,
-        o 5 si el suelo ya está degradado)</strong>.</p>
+        horizonte A con su materia orgánica. La ecuación universal <strong>USLE/RUSLE</strong>
+        (Wischmeier y Smith, 1978; Renard et al., 1997) la estima multiplicando lluvia × suelo ×
+        pendiente × cultivo × prácticas. En Uruguay se aplica con el software <strong>EROSION</strong>
+        de la Facultad de Agronomía (García Préchac, Hill y Clérici), calibrado localmente e
+        incorporando el efecto del agua del suelo (Hill, García Préchac, Terra y Sawchik, 2008):
+        cada chacra debe demostrar que pierde menos de la <strong>tolerancia (~7 t/ha por año;
+        5 si ya está degradado)</strong>.</p>
         <h2>La ley y los planes de uso</h2>
         <ul class="puntos">
           <li>El <b>decreto-ley 15.239 (1981)</b> declaró de interés nacional la conservación de suelos y aguas; el MGAP es la autoridad (reglamentos 333/004 y 405/008).</li>
@@ -961,7 +1113,7 @@ ul.puntos li::before{content:"";position:absolute;left:.4mm;top:1.55mm;width:1.7
       </div>
     </div>
     <h2>Quién sirve para qué: la aptitud en una tabla</h2>
-    <table class="tbl" style="font-size:7.4pt">
+    <table class="tbl" style="font-size:6.9pt">
       <tr><th>Uso</th><th>Suelos que lo bancan mejor</th><th>Suelos que lo sufren</th></tr>
       <tr><td><b>Agricultura de secano</b></td><td>Brunosoles éutricos profundos, Vertisoles (con manejo), Argisoles suaves</td><td>Litosoles, Arenosoles, halomórficos, Gleysoles</td></tr>
       <tr><td><b>Arroz</b></td><td>Planosoles y Gleysoles de planicie (capa impermeable + agua cerca)</td><td>Arenosoles y basalto superficial</td></tr>
@@ -1033,11 +1185,13 @@ ul.puntos li::before{content:"";position:absolute;left:.4mm;top:1.55mm;width:1.7
     <div class="kicker">Referencia rápida</div>
     <h1 class="cap" style="font-size:20pt">Glosario</h1>
     <div class="glos">
+      <div class="g"><span class="gt">Agua disponible (AD) ·</span> <span class="gd">agua retenida entre capacidad de campo y marchitez: la reserva que usan las raíces.</span></div>
       <div class="g"><span class="gt">Aptitud de uso ·</span> <span class="gd">lo que un suelo puede producir de forma sostenida sin degradarse.</span></div>
       <div class="g"><span class="gt">Bases ·</span> <span class="gd">cationes nutritivos: calcio, magnesio, potasio (y sodio, el problemático).</span></div>
       <div class="g"><span class="gt">Bt (B textural) ·</span> <span class="gd">horizonte B enriquecido en arcilla lavada desde arriba.</span></div>
       <div class="g"><span class="gt">Calicata ·</span> <span class="gd">pozo que expone el perfil del suelo para describirlo.</span></div>
       <div class="g"><span class="gt">Campo natural ·</span> <span class="gd">pastizal nativo uruguayo; la vegetación que construyó estos suelos.</span></div>
+      <div class="g"><span class="gt">Capacidad de campo (CC) ·</span> <span class="gd">agua que retiene el suelo tras drenar el exceso por gravedad (≈ −33 kPa).</span></div>
       <div class="g"><span class="gt">Carbonatos (Cca) ·</span> <span class="gd">acumulaciones blancas de carbonato de calcio en profundidad; burbujean con vinagre.</span></div>
       <div class="g"><span class="gt">CIC ·</span> <span class="gd">capacidad de intercambio catiónico: tamaño de la "despensa" de nutrientes.</span></div>
       <div class="g"><span class="gt">CONEAT ·</span> <span class="gd">índice nacional de productividad de la tierra (carne y lana; media = 100).</span></div>
@@ -1047,6 +1201,7 @@ ul.puntos li::before{content:"";position:absolute;left:.4mm;top:1.55mm;width:1.7
       <div class="g"><span class="gt">Erosión ·</span> <span class="gd">pérdida de suelo por agua o viento; la hídrica es la que importa acá.</span></div>
       <div class="g"><span class="gt">Fase ·</span> <span class="gd">detalle final del nombre de un suelo: superficial, pedregosa, erosionada…</span></div>
       <div class="g"><span class="gt">Gley / gleyzación ·</span> <span class="gd">colores grises y motas por agua estancada; marca de hidromorfismo.</span></div>
+      <div class="g"><span class="gt">Grupo hidrológico ·</span> <span class="gd">clase A–D de escurrimiento potencial de un suelo; en Uruguay, según Durán (1997).</span></div>
       <div class="g"><span class="gt">Horizonte ·</span> <span class="gd">cada capa del perfil (O, A, E, B, C, R).</span></div>
       <div class="g"><span class="gt">Horizonte álbico ·</span> <span class="gd">capa lavada, pálida, casi sin arcilla ni nutrientes (la E del Planosol).</span></div>
       <div class="g"><span class="gt">Horizonte melánico ·</span> <span class="gd">A negro, espeso y rico en bases: el sello de la pradera uruguaya.</span></div>
@@ -1055,9 +1210,11 @@ ul.puntos li::before{content:"";position:absolute;left:.4mm;top:1.55mm;width:1.7
       <div class="g"><span class="gt">Material madre ·</span> <span class="gd">roca o sedimento del que se formó el suelo.</span></div>
       <div class="g"><span class="gt">Montmorillonita / esmectita ·</span> <span class="gd">arcillas expansivas de los Vertisoles: se hinchan y agrietan.</span></div>
       <div class="g"><span class="gt">Napa colgada ·</span> <span class="gd">agua detenida sobre un horizonte impermeable, típica del Planosol en invierno.</span></div>
+      <div class="g"><span class="gt">Número de Curva (CN) ·</span> <span class="gd">método del SCS/NRCS para estimar cuánto escurre una lluvia según suelo, uso y humedad.</span></div>
       <div class="g"><span class="gt">Padrón ·</span> <span class="gd">unidad catastral de un inmueble rural; la llave para consultar CONEAT.</span></div>
       <div class="g"><span class="gt">Perfil ·</span> <span class="gd">el corte vertical del suelo, de la superficie a la roca.</span></div>
       <div class="g"><span class="gt">pH ·</span> <span class="gd">medida de acidez/alcalinidad (7 = neutro).</span></div>
+      <div class="g"><span class="gt">Punto de marchitez (PMP) ·</span> <span class="gd">succión (−1500 kPa) bajo la cual las raíces ya no pueden extraer agua.</span></div>
       <div class="g"><span class="gt">Saturación de bases ·</span> <span class="gd">% de la CIC ocupado por nutrientes; define éutrico/subéutrico/dístrico.</span></div>
       <div class="g"><span class="gt">Siembra directa ·</span> <span class="gd">sembrar sin arar, dejando el rastrojo: la práctica anti-erosión estrella.</span></div>
       <div class="g"><span class="gt">Solum ·</span> <span class="gd">la parte "viva" del perfil: horizontes A + E + B.</span></div>
@@ -1068,7 +1225,7 @@ ul.puntos li::before{content:"";position:absolute;left:.4mm;top:1.55mm;width:1.7
 </section>
 
 <!-- ══════════════════ FUENTES ══════════════════ -->
-<section class="page" id="fuentes" data-cap="Fuentes">
+<section class="page compact" id="fuentes" data-cap="Fuentes">
   <div class="pad">
     <div class="kicker">Para seguir leyendo</div>
     <h1 class="cap" style="font-size:20pt">Fuentes consultadas</h1>
@@ -1093,7 +1250,17 @@ ul.puntos li::before{content:"";position:absolute;left:.4mm;top:1.55mm;width:1.7
     <ul class="puntos">
       <li>IUSS Working Group WRB (2022). <b>World Reference Base for Soil Resources, 4ª edición</b> — 32 grupos de referencia (wrb.isric.org; hay traducción oficial al español).</li>
       <li>USDA – NRCS. <b>The Twelve Orders of Soil Taxonomy</b> y <i>Keys to Soil Taxonomy</i> (nrcs.usda.gov).</li>
-      <li>Clasificación hidrológica de los suelos del Uruguay (correlaciones Brunosol–Udoll, etc.; agris.fao.org).</li>
+    </ul>
+    <h3>Hidrología y drenaje de suelos</h3>
+    <ul class="puntos">
+      <li>Silva, A.; Ponce de León, J.; García, F. y Durán, A. (1988). <b>Aspectos metodológicos en la determinación de la capacidad de retener agua de los suelos del Uruguay</b>. Facultad de Agronomía, Boletín de Investigación Nº 10. (Retención a −10, −33, −100 y −1500 kPa sobre 240 muestras de 48 suelos.)</li>
+      <li>Durán, A. (1997). <b>Clasificación hidrológica de los suelos del Uruguay</b>. <i>Agrociencia</i> (Uruguay) 1(1): 15–29. (Grupos A–D del método SCS asignados a los suelos de la Carta de Reconocimiento.)</li>
+      <li>Molfino, J. H. y Califra, Á. (2001). <b>Agua disponible de las tierras del Uruguay. Segunda aproximación</b>. División Suelos y Aguas, DGRNR – MGAP. (AD de las 99 asociaciones de la Carta 1:1.000.000; base del AD por grupo CONEAT.)</li>
+      <li>Allen, R.; Pereira, L.; Raes, D. y Smith, M. (1998). <b>Crop evapotranspiration</b>. FAO Irrigation and Drainage Paper 56. (ETo Penman-Monteith y balance hídrico.)</li>
+      <li>USDA – NRCS. <b>National Engineering Handbook, Part 630: Hydrology</b> — grupos hidrológicos y método del Número de Curva (CN).</li>
+      <li>Wischmeier, W. y Smith, D. (1978). <b>Predicting rainfall erosion losses</b>. USDA Agriculture Handbook 537 · Renard, K. <i>et al.</i> (1997). <b>RUSLE</b>. Agriculture Handbook 703.</li>
+      <li>Hill, M.; García Préchac, F.; Terra, J. y Sawchik, J. (2008). Incorporación del efecto del contenido de agua del suelo en el modelo USLE/RUSLE. <i>Agrociencia</i> (Uruguay) XII(2): 57–67 · software <b>EROSION</b> v6.0 (Fagro; distribuido por el MGAP para los planes de uso).</li>
+      <li>Unidad de Hidrología, Depto. de Suelos y Aguas, Facultad de Agronomía – Udelar: materiales del curso "Agua en el suelo".</li>
     </ul>
     <h3>Regiones y contexto</h3>
     <ul class="puntos">
@@ -1119,7 +1286,7 @@ const FICHAS = [
  facts:[['Subdivisiones','Éutrico · Subéutrico · Dístrico, cada uno Háplico · Típico · Lúvico'],
   ['WRB','Phaeozems'],['USDA','Mollisols (Argiudolls, Hapludolls)'],
   ['Regiones','Todo el país: basalto profundo, cristalino, litoral oeste, sur'],
-  ['Extensión','Muy extendido — el más común del país'],['Fertilidad','Alta a media'],['Drenaje','Bueno a moderado']],
+  ['Extensión','Muy extendido — el más común del país'],['Fertilidad','Alta a media'],['Drenaje','Bueno a moderado · grupo hidrológico B–C (Durán, 1997)']],
  como:['Perfil clásico <b>A–Bt–Cca</b>: horizonte superficial melánico (negro a pardo muy oscuro, 20–40 cm, 3–6 % de materia orgánica, estructura granular), un B textural pardo con más arcilla, y abajo el material madre — que en el oeste trae carbonatos (Cca). Texturas medias, francas a franco arcillosas, con menos de 35 % de arcilla en al menos un horizonte: si superara ese umbral en todo el perfil, sería un Vertisol.',
   'Bien provisto de bases: los <b>Éutricos</b> rebosan calcio; los <b>Subéutricos</b> van a media tabla; los <b>Dístricos</b> son la versión empobrecida y escasa. Sin Bt es <b>Háplico</b>; con Bt moderado, <b>Típico</b>; con Bt potente, <b>Lúvico</b>.'],
  donde:'En todas las regiones: sobre el basalto profundo del norte, los granitos del cristalino, los limos calcáreos del litoral oeste (donde viven sus mejores versiones éutricas) y los limos del sur. Prefiere laderas medias y llanuras onduladas, dejándole los extremos a Litosoles (arriba) y Gleysoles (abajo).',
@@ -1135,7 +1302,7 @@ const FICHAS = [
  perfil:[['A','0–50 cm','#26221D','cracks'],['AC','50–90 cm','#3A342C','clay'],['Cca','90–120 cm','#7A6A4C','carb']],
  facts:[['Subdivisiones','Háplico · Rúptico'],['WRB','Vertisols'],['USDA','Vertisols (Uderts)'],
   ['Regiones','Basalto profundo del norte y litoral; limos calcáreos del oeste'],
-  ['Extensión','Común en el norte y oeste'],['Fertilidad','Muy alta (química)'],['Drenaje','Lento a moderado']],
+  ['Extensión','Común en el norte y oeste'],['Fertilidad','Muy alta (química)'],['Drenaje','Lento a moderado · grupo hidrológico D (Durán, 1997)']],
  como:['Negro de punta a punta: horizonte melánico potente y <b>más de 35 % de arcilla en todo el perfil</b> (la revisión de 2007 admite 30 %), sin contacto con la roca en los primeros 50 cm. Sus arcillas expansivas — esmectitas como la montmorillonita — se hinchan mojadas y se contraen secas: el suelo se <b>agrieta</b> en verano, traga material superficial y se auto-mezcla, borrando cualquier B textural (por eso el típico es <b>Háplico</b>; el <b>Rúptico</b> es la variante con perfil "interrumpido").',
   'Química de lujo: CIC muy alta, saturación de bases cercana al 80 % dominada por calcio, pH neutro a ligeramente alcalino y carbonatos frecuentes en profundidad.'],
  donde:'Basalto profundo del norte y el litoral (zonas de Itapebí, Young) y limos calcáreos del oeste sobre la Formación Fray Bentos. Comparte paisaje con los Brunosoles Éutricos, quedándose con los bajos y las laderas suaves de texturas más pesadas.',
@@ -1152,7 +1319,7 @@ const FICHAS = [
  facts:[['Subdivisiones','Éutrico · Subéutrico · Dístrico'],['WRB','Phaeozems lúvicos / Planosols'],
   ['USDA','Mollisols (Argiudolls, Argialbolls)'],
   ['Regiones','Lomadas y terrazas del este y noreste (unidades San Carlos, Salto, Algorta)'],
-  ['Extensión','Común'],['Fertilidad','Media'],['Drenaje','Moderado a imperfecto']],
+  ['Extensión','Común'],['Fertilidad','Media'],['Drenaje','Moderado a imperfecto · grupo hidrológico C (Durán, 1997)']],
  como:['Un suelo de pradera <b>lavado "a medias"</b>: el agua le fue llevando arcilla del horizonte superficial hacia abajo, formando un Bt más pesado — pero la transición es gradual y <b>no existe la capa blanqueada continua</b> que define al Planosol. El A queda pardo grisáceo, de texturas medias y materia orgánica moderada.',
   'Pertenece al orden saturado lixiviado: perdió parte de sus bases pero conserva bastante — fertilidad de media tabla, con versiones éutricas, subéutricas y dístricas.'],
  donde:'Lomadas suaves, colinas bajas y terrazas altas del este y el noreste; es dominante en las unidades San Carlos, Salto y Algorta de la Carta de Reconocimiento. Suele ocupar la franja intermedia del paisaje, entre los suelos melánicos de arriba y los Planosoles del llano.',
@@ -1169,7 +1336,7 @@ const FICHAS = [
  facts:[['Subdivisiones','Éutrico · Subéutrico · Dístrico (Melánicos u Ócricos)'],['WRB','Planosols'],
   ['USDA','Alfisols (Albaqualfs) / Argialbolls'],
   ['Regiones','Planicies del este (Laguna Merín); llanuras del centro y noreste'],
-  ['Extensión','Común en el este'],['Fertilidad','Baja a media'],['Drenaje','Imperfecto a pobre']],
+  ['Extensión','Común en el este'],['Fertilidad','Baja a media'],['Drenaje','Imperfecto a pobre · grupo hidrológico D (Durán, 1997)']],
  como:['El "doble piso" perfecto: un A de texturas medias, debajo una capa lavada casi blanca — el <b>horizonte E álbico</b>, de 3 cm o más, continuo — y de golpe, con <b>transición abrupta</b>, un Bt arcilloso, denso y casi impermeable.',
   'Esa arquitectura define su vida: en invierno el agua queda <b>colgada</b> sobre el piso arcilloso (napa colgada) y el perfil se satura; en verano, el horizonte superficial — el único que exploran las raíces — se seca rápido. Saturación de bases media; materia orgánica moderada.'],
  donde:'Relieve plano o casi plano, donde el agua no tiene apuro: las planicies del este en la cuenca de la Laguna Merín (su capital), y llanuras altas del centro y el noreste. Convive con Gleysoles (más bajos) y Argisoles (más altos).',
@@ -1252,7 +1419,7 @@ const FICHAS = [
  perfil:[['A','0–20 cm','#B99C68','sand'],['C','20–120 cm','#D8BE8A','sand']],
  facts:[['Subdivisiones','Ócricos'],['WRB','Arenosols'],['USDA','Entisols (Udipsamments)'],
   ['Regiones','Costas del Río de la Plata y el Atlántico; arenas del noreste'],
-  ['Extensión','Localizado'],['Fertilidad','Muy baja'],['Drenaje','Excesivo']],
+  ['Extensión','Localizado'],['Fertilidad','Muy baja'],['Drenaje','Excesivo · grupo hidrológico A (Durán, 1997)']],
  como:['Arena y más arena: textura arenosa o arenoso franca <b>hasta 120 cm o más</b> (o más de 50 cm sobre un suelo enterrado o la roca), sin ningún horizonte diagnóstico. Granos sueltos, sin estructura.',
   'Su química es un colador: CIC bajísima, casi nada de materia orgánica, retención de agua mínima. Lo que llueve, drena; lo que se fertiliza, se lava.'],
  donde:'Cordones de dunas de las costas del Río de la Plata y el océano Atlántico (de Canelones a Rocha), arenas fluviales puntuales de ríos del este y noreste, y manchones areniscos del norte.',
@@ -1285,7 +1452,7 @@ const FICHAS = [
  facts:[['Subdivisiones','Háplicos · Lúvicos (Melánicos u Ócricos)'],['WRB','Gleysols'],
   ['USDA','Grupos "ácuicos": Endoaquolls, Epiaqualfs…'],
   ['Regiones','Depresiones y planicies bajas de todo el país; el este sobre todo'],
-  ['Extensión','Común en posiciones bajas'],['Fertilidad','Media'],['Drenaje','Pobre a muy pobre']],
+  ['Extensión','Común en posiciones bajas'],['Fertilidad','Media'],['Drenaje','Pobre a muy pobre · grupo hidrológico D (Durán, 1997)']],
  como:['El suelo con la napa a flor: saturado buena parte del año, desarrolla los colores de la <b>gleyzación</b> — matrices grises verdosas con motas naranjas — porque el hierro, sin oxígeno, se reduce, se mueve y se re-oxida solo en los poros con aire.',
   'Arriba suele tener un A oscuro y bien provisto (los años húmedos conservan materia orgánica); abajo, horizontes grises masivos que cuentan dónde vive el agua.'],
  donde:'Depresiones, bordes de bañado y planicies bajas de todo el país; en la cuenca de la Laguna Merín forma equipo con Planosoles y Argisoles. La regla es simple: donde el agua se junta, hay un Gleysol esperando.',
