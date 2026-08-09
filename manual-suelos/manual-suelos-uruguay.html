@@ -1,0 +1,1418 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Manual de Suelos del Uruguay</title>
+<link rel="stylesheet" href="fonts/local.css">
+<style>
+/* ============ base ============ */
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --tinta:#2B2118; --tinta2:#584736; --papel:#F8F4EA; --papel2:#F1EADA; --blanco:#FDFBF5;
+  --tierra:#7A4A2B; --tierraosc:#452A17; --ocre:#C1873B; --ocresoft:#E9D9BC;
+  --arcilla:#A34F2E; --pradera:#4F6B3A; --praderaosc:#39512A; --agua:#4E7D8C;
+  --piedra:#8B8578; --linea:#DCD2BC; --lineafina:#E7DFCC;
+  --fd:"Fraunces",serif;           /* display */
+  --fs:"Source Serif 4",serif;     /* body    */
+  --fi:"Inter",sans-serif;         /* labels  */
+}
+html{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+body{font-family:var(--fs);color:var(--tinta);background:#888}
+@page{size:A4;margin:0}
+.page{width:210mm;height:297mm;background:var(--papel);position:relative;overflow:hidden;
+  page-break-after:always;break-after:page}
+.page:last-of-type{page-break-after:auto}
+.pad{padding:15mm 16mm 22mm;height:100%}
+@media screen{.page{margin:8mm auto;box-shadow:0 2mm 6mm rgba(0,0,0,.35)}}
+
+/* ============ footer (JS-injected) ============ */
+.pfoot{position:absolute;left:0;right:0;bottom:0;height:14mm}
+.pfoot .meta{position:absolute;left:16mm;right:16mm;top:1.2mm;display:flex;align-items:center;
+  font-family:var(--fi);font-size:6.6pt;letter-spacing:.13em;text-transform:uppercase;color:var(--tinta2)}
+.pfoot .meta .num{margin-left:auto;font-weight:600;color:var(--tierra)}
+.pfoot .strip{position:absolute;left:0;right:0;bottom:0;height:6.5mm;display:flex;flex-direction:column}
+.pfoot .strip i{display:block;flex:1}
+.pfoot .strip i:nth-child(1){background:#4F6B3A}
+.pfoot .strip i:nth-child(2){background:#5B3A24}
+.pfoot .strip i:nth-child(3){background:#8A6B43}
+.pfoot .strip i:nth-child(4){background:#C1873B}
+
+/* ============ typographic components ============ */
+.kicker{font-family:var(--fi);font-size:7.5pt;font-weight:600;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--arcilla)}
+h1.cap{font-family:var(--fd);font-weight:900;font-size:25pt;line-height:1.08;color:var(--tierraosc);
+  margin:2.5mm 0 3mm}
+h2{font-family:var(--fd);font-weight:700;font-size:13.5pt;color:var(--tierraosc);margin:5mm 0 2mm}
+h3{font-family:var(--fi);font-weight:700;font-size:8.6pt;letter-spacing:.06em;text-transform:uppercase;
+  color:var(--tierra);margin:3.5mm 0 1.2mm}
+p{font-size:9.6pt;line-height:1.58;margin:0 0 2.6mm}
+p.lede{font-size:11.3pt;line-height:1.55;color:var(--tinta2);margin:0 0 4mm}
+strong{color:var(--tierraosc)}
+.small{font-size:8pt;line-height:1.5;color:var(--tinta2)}
+.nota{font-family:var(--fi);font-size:7.6pt;line-height:1.5;color:var(--tinta2);
+  background:var(--papel2);border-left:1.2mm solid var(--ocre);padding:2.4mm 3mm;border-radius:0 1mm 1mm 0;margin:3mm 0}
+.capnum{font-family:var(--fd);font-weight:900;font-size:34pt;color:var(--ocre);line-height:1}
+.caphead{display:flex;gap:6mm;align-items:baseline;border-bottom:.55mm solid var(--tierraosc);padding-bottom:3.5mm;margin-bottom:5mm}
+.caphead .kicker{margin-bottom:1.5mm}
+hr.sep{border:none;border-top:.3mm solid var(--linea);margin:4mm 0}
+
+/* ============ grids & cards ============ */
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:4.5mm}
+.grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:4mm}
+.card{background:var(--blanco);border:.3mm solid var(--linea);border-radius:1.6mm;padding:3.6mm 4mm}
+.card h4{font-family:var(--fd);font-weight:700;font-size:10.5pt;color:var(--tierraosc);margin:0 0 1.4mm}
+.card p{font-size:8.6pt;line-height:1.5;margin:0}
+.card .kicker{font-size:6.6pt;margin-bottom:1mm;display:block}
+
+/* ============ tables ============ */
+table.tbl{width:100%;border-collapse:collapse;font-family:var(--fi);font-size:7.9pt;line-height:1.42;
+  background:var(--blanco);border:.3mm solid var(--linea);border-radius:1.6mm;overflow:hidden}
+.tbl th{background:var(--tierraosc);color:#F3E9D5;text-align:left;font-weight:600;font-size:7pt;
+  letter-spacing:.08em;text-transform:uppercase;padding:2mm 2.6mm}
+.tbl td{padding:1.9mm 2.6mm;border-top:.25mm solid var(--lineafina);vertical-align:top}
+.tbl tr:nth-child(even) td{background:#FAF6EC}
+.tbl td b{color:var(--tierraosc)}
+.tag{display:inline-block;font-family:var(--fi);font-size:6.6pt;font-weight:600;letter-spacing:.05em;
+  border-radius:6mm;padding:.5mm 2.2mm;text-transform:uppercase}
+.tag.uy{background:#E4EBD9;color:var(--praderaosc)}
+.tag.no{background:#EEE8DA;color:var(--piedra)}
+
+/* ============ portada ============ */
+.cover{background:var(--tierraosc)}
+.cover .art{position:absolute;left:0;right:0;bottom:0}
+.cover .top{position:absolute;left:18mm;right:18mm;top:20mm;color:#F3E9D5}
+.cover .rule{width:26mm;height:1.4mm;background:var(--ocre);margin:6mm 0 8mm}
+.cover .kicker{color:#D8B778;font-size:8.5pt}
+.cover h1{font-family:var(--fd);font-weight:900;font-size:41pt;line-height:1.04;margin-top:4mm;color:#F8F2E2}
+.cover h1 em{font-style:normal;color:#DFA955}
+.cover .sub{font-family:var(--fs);font-size:12.5pt;line-height:1.6;color:#E4D5B8;max-width:150mm;margin-top:7mm}
+.cover .edicion{position:absolute;left:18mm;bottom:12mm;color:#C9AF8B}
+</style>
+</head>
+<body>
+<style>
+/* ============ índice ============ */
+.toc .trow{display:flex;align-items:baseline;gap:2.5mm;font-family:var(--fi);font-size:9.2pt;margin:2.1mm 0}
+.toc .trow.sub{font-size:8.2pt;margin:1.2mm 0 1.2mm 6mm;color:var(--tinta2)}
+.toc .tname{font-weight:600;color:var(--tinta)}
+.toc .sub .tname{font-weight:400;color:var(--tinta2)}
+.toc .tdots{flex:1;border-bottom:.35mm dotted #C9BC9E;transform:translateY(-1mm)}
+.toc .tnum{font-family:var(--fi);font-weight:600;color:var(--tierra);font-size:8.6pt}
+.toc .tcapnum{font-family:var(--fd);font-weight:900;color:var(--ocre);width:7mm;font-size:10.5pt}
+
+/* ============ fichas ============ */
+.fhead{display:flex;align-items:flex-end;gap:4.5mm;border-bottom:1.1mm solid var(--fcolor,#7A4A2B);padding-bottom:2.8mm}
+.fhead .fnum{font-family:var(--fd);font-weight:900;font-size:30pt;line-height:.9;color:var(--fcolor,#7A4A2B);opacity:.85}
+.fhead h1{font-family:var(--fd);font-weight:900;font-size:27pt;line-height:.95;color:var(--tierraosc)}
+.fhead .fety{font-size:8.8pt;font-style:italic;color:var(--tinta2);margin-top:1.6mm}
+.fhead .fchip{margin-left:auto;text-align:right}
+.fchip .orden{display:inline-block;font-family:var(--fi);font-size:7pt;font-weight:600;letter-spacing:.12em;
+  text-transform:uppercase;background:var(--fcolor,#7A4A2B);color:#F8F2E2;border-radius:6mm;padding:1.2mm 3.4mm}
+.fchip .apodo{font-family:var(--fs);font-style:italic;font-size:8.6pt;color:var(--tinta2);margin-top:1.6mm}
+.fbody{display:grid;grid-template-columns:57mm 1fr;gap:6.5mm;margin-top:4.5mm}
+.perfilbox{background:var(--blanco);border:.3mm solid var(--linea);border-radius:1.6mm;padding:3mm 3mm 2mm}
+.perfilbox .pcap{font-family:var(--fi);font-size:6.5pt;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--tinta2);text-align:center;margin-top:1.4mm}
+.facts{margin-top:3.5mm}
+.facts .frow{display:flex;gap:2.5mm;padding:1.7mm 0;border-bottom:.25mm solid var(--lineafina);align-items:baseline}
+.facts .frow:last-child{border-bottom:none}
+.facts .fk{font-family:var(--fi);font-size:6.2pt;font-weight:600;letter-spacing:.07em;text-transform:uppercase;
+  color:var(--tierra);width:21mm;flex:none}
+.facts .fv{font-family:var(--fi);font-size:7.7pt;line-height:1.42;color:var(--tinta)}
+.fmain h3{margin:0 0 1.3mm;color:var(--fcolor,#7A4A2B)}
+.fmain h3 + p, .fmain p{font-size:8.9pt;line-height:1.52;margin-bottom:2.6mm}
+.fmain .bloque{margin-bottom:3.2mm}
+ul.puntos{list-style:none;margin:.5mm 0 0}
+ul.puntos li{font-size:8.7pt;line-height:1.48;padding-left:4mm;position:relative;margin-bottom:1.3mm}
+ul.puntos li::before{content:"";position:absolute;left:.4mm;top:1.55mm;width:1.7mm;height:1.7mm;
+  border-radius:.4mm;background:var(--fcolor,#C1873B)}
+.dato{background:var(--papel2);border-radius:1.6mm;padding:2.6mm 3.2mm;margin-top:1mm}
+.dato .dk{font-family:var(--fi);font-size:6.5pt;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--arcilla)}
+.dato p{font-size:8.2pt;line-height:1.5;margin:1mm 0 0}
+
+/* ============ wrb / st grids ============ */
+.wrbgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:2.2mm;margin-top:3mm}
+.wrbgrid .w{background:var(--blanco);border:.3mm solid var(--linea);border-radius:1.2mm;padding:1.9mm 2.2mm;min-height:14mm}
+.wrbgrid .w.uy{border-color:var(--pradera);border-width:.45mm;background:#F4F7EC}
+.wrbgrid .wn{font-family:var(--fi);font-weight:700;font-size:7.6pt;color:var(--tierraosc)}
+.wrbgrid .wd{font-family:var(--fi);font-size:6.6pt;line-height:1.35;color:var(--tinta2);margin-top:.8mm}
+.wrbgrid .w.uy .wn::after{content:" ●";color:var(--pradera);font-size:6pt}
+
+/* ============ glosario ============ */
+.glos{columns:2;column-gap:8mm;margin-top:3mm}
+.glos .g{break-inside:avoid;margin-bottom:2.7mm}
+.glos .gt{font-family:var(--fi);font-weight:700;font-size:8.4pt;color:var(--tierraosc)}
+.glos .gd{font-size:8.4pt;line-height:1.5;color:var(--tinta)}
+
+/* ============ misc ============ */
+.legend{display:flex;flex-wrap:wrap;gap:2mm 4mm;font-family:var(--fi);font-size:7pt;color:var(--tinta2);margin-top:2mm}
+.legend i{display:inline-block;width:3.2mm;height:3.2mm;border-radius:.7mm;margin-right:1.3mm;vertical-align:-.5mm}
+.twocol{columns:2;column-gap:7mm}
+.twocol p{break-inside:avoid}
+
+/* ============ modo compacto (páginas densas) ============ */
+.compact p.lede{font-size:10pt;margin-bottom:2.5mm}
+.compact .caphead{margin-bottom:3.5mm;padding-bottom:2.5mm}
+.compact .tbl td{padding:1.4mm 2.2mm}
+.compact .tbl th{padding:1.6mm 2.2mm}
+.compact h2{margin:3.5mm 0 1.6mm}
+.compact h3{margin:2.5mm 0 1mm}
+.compact ul.puntos li{margin-bottom:1mm;line-height:1.42}
+.compact .nota{margin:2.2mm 0;padding:2mm 2.6mm}
+.compact p{margin-bottom:2mm}
+</style>
+
+<!-- ══════════════════ PORTADA ══════════════════ -->
+<section class="page cover" data-nofoot>
+  <div class="top">
+    <div class="kicker">Guía ilustrada · República Oriental del Uruguay</div>
+    <div class="rule"></div>
+    <h1>Manual de<br>Suelos del<br><em>Uruguay</em></h1>
+    <p class="sub">Todos los grandes grupos de suelo del país: cómo se forman, de qué están
+    compuestos, dónde aparecen y para qué sirven — con su equivalencia en las
+    clasificaciones internacionales WRB y USDA, el sistema CONEAT y una guía
+    simple de diagnóstico.</p>
+  </div>
+  <div class="edicion" style="font-family:var(--fi);font-size:8pt;letter-spacing:.12em;text-transform:uppercase">
+    Edición agosto 2026 · Elaborado y verificado con fuentes oficiales (MGAP · FAO · IUSS)
+  </div>
+  <svg class="art" viewBox="0 0 210 132" width="100%" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <linearGradient id="cieloG" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#452A17"/><stop offset="1" stop-color="#5A3A22"/>
+      </linearGradient>
+    </defs>
+    <!-- resplandor sobre el horizonte -->
+    <rect x="0" y="0" width="210" height="30" fill="url(#cieloG)"/>
+    <!-- pasto -->
+    <path d="M0,30 L210,30 L210,26.5 C200,25 190,27.5 178,26 C165,24.5 150,27 138,25.5 C124,24 110,27 96,25.5 C82,24 70,27 56,25.5 C42,24 28,26.5 14,25.5 C8,25 3,26 0,26.5 Z" fill="#39512A"/>
+    <g stroke="#4F6B3A" stroke-width="1.1" stroke-linecap="round" fill="none">
+      <path d="M20,26 C19,22 18,19 16,16"/><path d="M22,26 C22,21 23,18 25,15"/>
+      <path d="M60,25.5 C59,21 57,18 54,16"/><path d="M63,25.5 C63,20 65,17 67,14"/>
+      <path d="M104,26 C103,22 102,18 100,15"/><path d="M107,26 C108,21 109,18 112,16"/>
+      <path d="M148,25.5 C147,21 145,18 143,15"/><path d="M151,25.5 C152,20 154,17 156,15"/>
+      <path d="M186,26 C185,22 184,19 182,16"/><path d="M189,26 C190,21 191,18 193,16"/>
+    </g>
+    <!-- horizonte A -->
+    <rect x="0" y="30" width="210" height="27" fill="#33251A"/>
+    <g fill="#241A12" opacity=".8">
+      <circle cx="18" cy="38" r=".8"/><circle cx="47" cy="43" r=".7"/><circle cx="83" cy="36" r=".8"/>
+      <circle cx="121" cy="44" r=".7"/><circle cx="158" cy="37" r=".8"/><circle cx="193" cy="45" r=".7"/>
+      <circle cx="33" cy="50" r=".7"/><circle cx="102" cy="51" r=".8"/><circle cx="176" cy="51" r=".7"/>
+      <circle cx="65" cy="47" r=".6"/><circle cx="140" cy="49" r=".6"/>
+    </g>
+    <!-- horizonte Bt -->
+    <path d="M0,57 C30,55.5 60,58.5 105,57 C150,55.5 180,58.5 210,57 L210,88 L0,88 Z" fill="#5B3A24"/>
+    <g stroke="#4A2E1B" stroke-width=".5" opacity=".7" fill="none">
+      <path d="M12,66 l8,2 M34,74 l7,-2 M58,64 l8,2 M84,76 l8,-2 M108,66 l8,2 M134,75 l7,-2 M160,65 l8,2 M186,76 l8,-2"/>
+      <path d="M22,80 l7,2 M70,82 l7,-1 M120,81 l7,2 M172,83 l7,-1"/>
+    </g>
+    <!-- horizonte C con carbonatos -->
+    <path d="M0,88 C40,86.5 80,89.5 120,88 C160,86.5 185,89.5 210,88 L210,113 L0,113 Z" fill="#8A6B43"/>
+    <g fill="#E9DFC8" opacity=".9">
+      <circle cx="25" cy="97" r="1.1"/><circle cx="58" cy="104" r=".9"/><circle cx="96" cy="96" r="1.2"/>
+      <circle cx="130" cy="105" r=".9"/><circle cx="167" cy="97" r="1.1"/><circle cx="196" cy="104" r=".9"/>
+      <circle cx="42" cy="108" r=".8"/><circle cx="112" cy="109" r=".8"/><circle cx="182" cy="108" r=".8"/>
+    </g>
+    <!-- roca -->
+    <path d="M0,113 C35,111.5 70,114.5 105,113 C140,111.5 175,114.5 210,113 L210,132 L0,132 Z" fill="#615A4E"/>
+    <g stroke="#4E483E" stroke-width=".7" fill="none" opacity=".9">
+      <path d="M0,120 L210,120 M0,127 L210,127"/>
+      <path d="M28,113 L24,120 M62,120 L58,127 M96,113 L92,120 M132,120 L128,127 M168,113 L164,120 M198,120 L194,127"/>
+    </g>
+    <!-- raíces -->
+    <g stroke="#8A6B43" stroke-width=".8" fill="none" opacity=".85" stroke-linecap="round">
+      <path d="M61,26 C61,36 59,46 56,54 C54,60 51,64 48,67"/>
+      <path d="M61,32 C64,40 66,48 66,56"/>
+      <path d="M105,26 C105,38 107,50 109,60 C110,66 112,70 115,73"/>
+      <path d="M105,34 C102,42 100,50 100,58"/>
+      <path d="M149,26 C149,35 148,44 146,52 C145,57 143,61 141,64"/>
+      <path d="M149,31 C152,39 153,46 153,53"/>
+    </g>
+  </svg>
+</section>
+
+<!-- ══════════════════ PRESENTACIÓN + ÍNDICE ══════════════════ -->
+<section class="page" data-cap="Presentación">
+  <div class="pad">
+    <div class="kicker">Presentación</div>
+    <h1 class="cap">Un país parado<br>sobre pradera</h1>
+    <p class="lede">Casi todo el Uruguay está cubierto por suelos de pradera: oscuros, ricos en
+    materia orgánica y formados durante miles de años bajo pastizales. Son la base de la
+    ganadería, la agricultura y los montes del país — y no todos son iguales.</p>
+    <div class="grid2">
+      <div>
+        <p>Este manual reúne, en lenguaje simple, la información esencial sobre <strong>todos los
+        grandes grupos de suelo reconocidos en el Uruguay</strong> por la clasificación nacional
+        (Altamirano y colaboradores, 1976, revisada en 2007): cómo está compuesto cada uno,
+        dónde aparece, qué lo limita y para qué sirve.</p>
+        <p>Además, ubica cada suelo uruguayo dentro de los <strong>dos sistemas internacionales</strong>
+        más usados — la base WRB de la FAO/IUSS y la Soil Taxonomy del USDA — para que puedas
+        leer sin perderte cualquier informe técnico, nacional o extranjero.</p>
+      </div>
+      <div>
+        <p>La información fue recopilada y contrastada con fuentes oficiales y académicas: la
+        <strong>Carta de Reconocimiento de Suelos del Uruguay</strong> (MGAP), el <strong>Manual de
+        Descripción y Muestreo de Suelos</strong> de la Dirección General de Recursos Naturales,
+        el sistema <strong>CONEAT</strong>, la Facultad de Agronomía (Udelar), la FAO y el USDA.</p>
+        <p>Las fichas del capítulo 3 son el corazón del manual: una página por suelo, siempre con
+        el mismo esquema, para comparar de un vistazo.</p>
+      </div>
+    </div>
+    <div class="nota"><b>Cómo usarlo:</b> si venís sin apuro, leé los capítulos 1 y 2 primero: en diez
+    minutos vas a entender el vocabulario (horizontes, texturas, pH) y el sistema de nombres. Si buscás
+    un suelo puntual, andá directo a su ficha — cada una se explica sola.</div>
+    <h2 style="margin-top:5mm">Índice</h2>
+    <div class="toc">
+      <div class="trow"><span class="tcapnum">1</span><span class="tname">Entender el suelo</span><span class="tdots"></span><span class="tnum" data-ref="cap1"></span></div>
+      <div class="trow sub"><span class="tname">Qué es · cómo se forma · el perfil y sus horizontes · textura, pH y otras propiedades</span><span class="tdots"></span><span class="tnum"></span></div>
+      <div class="trow"><span class="tcapnum">2</span><span class="tname">La clasificación uruguaya y las regiones de suelo</span><span class="tdots"></span><span class="tnum" data-ref="cap2"></span></div>
+      <div class="trow"><span class="tcapnum">3</span><span class="tname">Fichas: los suelos del Uruguay, uno por uno</span><span class="tdots"></span><span class="tnum" data-ref="fichas"></span></div>
+      <div class="trow sub"><span class="tname">Brunosol · Vertisol · Argisol · Planosol · Luvisol · Acrisol · Litosol · Inceptisol · Arenosol · Fluvisol · Gleysol · Histosol · suelos halomórficos</span><span class="tdots"></span><span class="tnum"></span></div>
+      <div class="trow"><span class="tcapnum">4</span><span class="tname">Las clasificaciones internacionales (WRB y USDA)</span><span class="tdots"></span><span class="tnum" data-ref="cap4"></span></div>
+      <div class="trow"><span class="tcapnum">5</span><span class="tname">CONEAT: el índice de productividad de la tierra</span><span class="tdots"></span><span class="tnum" data-ref="cap5"></span></div>
+      <div class="trow"><span class="tcapnum">6</span><span class="tname">Uso, conservación y manejo</span><span class="tdots"></span><span class="tnum" data-ref="cap6"></span></div>
+      <div class="trow"><span class="tcapnum">7</span><span class="tname">Diagnóstico: leer el suelo en el campo y en el laboratorio</span><span class="tdots"></span><span class="tnum" data-ref="cap7"></span></div>
+      <div class="trow"><span class="tcapnum">·</span><span class="tname">Glosario</span><span class="tdots"></span><span class="tnum" data-ref="glosario"></span></div>
+      <div class="trow"><span class="tcapnum">·</span><span class="tname">Fuentes consultadas</span><span class="tdots"></span><span class="tnum" data-ref="fuentes"></span></div>
+    </div>
+  </div>
+</section>
+<!-- ══════════════════ CAP 1 · QUÉ ES EL SUELO ══════════════════ -->
+<section class="page" id="cap1" data-cap="Cap. 1 · Entender el suelo">
+  <div class="pad">
+    <div class="caphead">
+      <div class="capnum">1</div>
+      <div>
+        <div class="kicker">Capítulo uno</div>
+        <h1 class="cap" style="margin-bottom:0">Entender el suelo</h1>
+      </div>
+    </div>
+    <p class="lede">El suelo no es "tierra": es un cuerpo natural vivo, formado durante miles de
+    años, que respira, guarda agua y alimenta plantas. Conocerlo es el primer paso para usarlo
+    sin gastarlo.</p>
+    <h2>¿De qué está hecho?</h2>
+    <p>Un suelo en buen estado tiene, en volumen, aproximadamente <strong>la mitad de material
+    sólido y la mitad de poros</strong>. Los sólidos son partículas minerales (heredadas de la roca)
+    más una fracción pequeña pero decisiva de materia orgánica. Los poros se reparten entre agua
+    y aire, en proporciones que cambian con la lluvia y el drenaje.</p>
+    <svg viewBox="0 0 178 30" width="100%" xmlns="http://www.w3.org/2000/svg" style="margin:2mm 0 1mm">
+      <rect x="0" y="2" width="80.1" height="14" fill="#8A6B43" rx="1"/>
+      <rect x="80.1" y="2" width="8.9" height="14" fill="#33251A"/>
+      <rect x="89" y="2" width="44.5" height="14" fill="#4E7D8C"/>
+      <rect x="133.5" y="2" width="44.5" height="14" fill="#CFC5AE" rx="1"/>
+      <g font-family="Inter" font-size="4.6" fill="#2B2118">
+        <text x="0" y="23.5" font-weight="600">Minerales · 45 %</text>
+        <text x="72" y="28.8" font-weight="600">Materia orgánica · ≈5 %</text>
+        <text x="89" y="23.5" font-weight="600">Agua · ≈25 %</text>
+        <text x="133.5" y="23.5" font-weight="600">Aire · ≈25 %</text>
+      </g>
+      <path d="M84.5,16 L84.5,20 L80,25.5" stroke="#584736" stroke-width=".5" fill="none"/>
+    </svg>
+    <p class="small">Proporciones de referencia para un suelo franco húmedo y bien estructurado; en un
+    Vertisol arcilloso o en un Arenosol costero los números cambian bastante.</p>
+    <h2>¿Para qué sirve? Seis funciones que damos por sentadas</h2>
+    <div class="grid3">
+      <div class="card"><span class="kicker">1 · Producir</span><h4>Sostén de plantas</h4><p>Ancla las raíces y entrega agua y nutrientes: es la fábrica de alimento, fibra y madera.</p></div>
+      <div class="card"><span class="kicker">2 · Guardar agua</span><h4>Esponja del paisaje</h4><p>Absorbe la lluvia, la almacena y la libera de a poco hacia plantas, napas y arroyos.</p></div>
+      <div class="card"><span class="kicker">3 · Filtrar</span><h4>Depurador natural</h4><p>Retiene y transforma contaminantes antes de que lleguen al agua subterránea.</p></div>
+      <div class="card"><span class="kicker">4 · Reciclar</span><h4>Digestor de residuos</h4><p>Su fauna y microbios descomponen restos vegetales y animales y devuelven nutrientes.</p></div>
+      <div class="card"><span class="kicker">5 · Clima</span><h4>Almacén de carbono</h4><p>La materia orgánica del suelo guarda más carbono que la vegetación que crece encima.</p></div>
+      <div class="card"><span class="kicker">6 · Vida</span><h4>Hábitat</h4><p>En una hectárea de pradera viven toneladas de raíces, lombrices, hongos y bacterias.</p></div>
+    </div>
+    <div class="nota">En el Uruguay el suelo es, junto con el agua, <b>el recurso natural más valioso
+    del país</b>: de él dependen la ganadería sobre campo natural, la agricultura, el arroz, la
+    lechería y la forestación. Por eso su uso está regulado por ley (capítulo 6).</div>
+  </div>
+</section>
+
+<!-- ══════════════════ CAP 1 · CÓMO SE FORMA ══════════════════ -->
+<section class="page" data-cap="Cap. 1 · Entender el suelo">
+  <div class="pad">
+    <div class="kicker">Capítulo 1 · continuación</div>
+    <h1 class="cap" style="font-size:20pt">Cómo se forma un suelo</h1>
+    <p class="lede">Cada suelo es una receta con cinco ingredientes. Cambiá uno solo — la roca, la
+    posición en la ladera, el tiempo — y el resultado es otro suelo. Por eso un país chico como
+    el Uruguay tiene más de una decena de grandes grupos distintos.</p>
+    <div class="grid3" style="grid-template-columns:repeat(5,1fr);gap:3mm">
+      <div class="card"><span class="kicker">Factor 1</span><h4 style="font-size:9.5pt">Material madre</h4><p style="font-size:7.8pt">La roca o el sedimento de origen: basalto, granito, areniscas, limos. Define textura y riqueza química de partida.</p></div>
+      <div class="card"><span class="kicker">Factor 2</span><h4 style="font-size:9.5pt">Clima</h4><p style="font-size:7.8pt">Templado y húmedo (≈1.200–1.400 mm/año), sin estación seca marcada: meteoriza la roca y lava lo soluble hacia abajo.</p></div>
+      <div class="card"><span class="kicker">Factor 3</span><h4 style="font-size:9.5pt">Relieve</h4><p style="font-size:7.8pt">Las laderas pierden material y agua; los bajos los reciben. Arriba suelos jóvenes y delgados, abajo profundos o anegados.</p></div>
+      <div class="card"><span class="kicker">Factor 4</span><h4 style="font-size:9.5pt">Organismos</h4><p style="font-size:7.8pt">La pradera es la gran constructora: raíces densas + lombrices + microbios producen el horizonte oscuro rico en humus.</p></div>
+      <div class="card"><span class="kicker">Factor 5</span><h4 style="font-size:9.5pt">Tiempo</h4><p style="font-size:7.8pt">Formar un centímetro de suelo lleva siglos. Los suelos "maduros" del país tienen decenas de miles de años.</p></div>
+    </div>
+    <h2>Los procesos que dejan huella</h2>
+    <p>Con esos cinco factores actuando juntos, dentro del suelo ocurren procesos lentos que
+    terminan definiendo a qué grupo pertenece. Conviene conocer sus nombres, porque aparecen
+    una y otra vez en las fichas:</p>
+    <table class="tbl">
+      <tr><th style="width:34mm">Proceso</th><th>Qué pasa</th><th style="width:52mm">Qué suelo produce</th></tr>
+      <tr><td><b>Meteorización</b></td><td>La roca se desarma en partículas por agua, temperatura y raíces.</td><td>Es el punto de partida de todos.</td></tr>
+      <tr><td><b>Melanización</b></td><td>La materia orgánica de la pradera oscurece el horizonte superficial.</td><td>Suelos melánicos: Brunosoles y Vertisoles.</td></tr>
+      <tr><td><b>Lixiviación (lavado)</b></td><td>El agua arrastra bases (calcio, magnesio…) y arcillas hacia abajo.</td><td>Argisoles, Planosoles, Luvisoles, Acrisoles.</td></tr>
+      <tr><td><b>Iluviación</b></td><td>Lo lavado se acumula en el subsuelo y forma un horizonte B arcilloso (Bt).</td><td>El "doble piso" típico de Planosoles y Argisoles.</td></tr>
+      <tr><td><b>Expansión–contracción</b></td><td>Arcillas que se hinchan mojadas y se agrietan secas, mezclando el perfil.</td><td>Vertisoles.</td></tr>
+      <tr><td><b>Gleyzación</b></td><td>El agua estancada deja el suelo gris verdoso con manchas de óxido.</td><td>Gleysoles y suelos de bañado.</td></tr>
+      <tr><td><b>Acumulación orgánica</b></td><td>Restos vegetales que no se descomponen bajo agua permanente.</td><td>Histosoles (turberas).</td></tr>
+      <tr><td><b>Alcalinización</b></td><td>El sodio se adueña del complejo de intercambio y dispersa las arcillas.</td><td>Suelos halomórficos (Solonetz).</td></tr>
+    </table>
+    <div class="nota"><b>La regla de oro uruguaya:</b> clima parejo en todo el país → lo que más
+    diferencia a nuestros suelos es el <b>material madre</b> y el <b>relieve</b>. Sabiendo sobre qué
+    roca estás parado y en qué parte de la ladera, ya podés adivinar buena parte del suelo.</div>
+  </div>
+</section>
+
+<!-- ══════════════════ CAP 1 · EL PERFIL ══════════════════ -->
+<section class="page" data-cap="Cap. 1 · Entender el suelo">
+  <div class="pad">
+    <div class="kicker">Capítulo 1 · continuación</div>
+    <h1 class="cap" style="font-size:20pt">El perfil y sus horizontes</h1>
+    <p class="lede">Si cortás el suelo con una pala hasta la roca (una <i>calicata</i>), ves capas de
+    distinto color y textura: los <strong>horizontes</strong>. Leer esa "torta" es leer la historia del
+    suelo — y es exactamente lo que usan todas las clasificaciones.</p>
+    <div style="display:grid;grid-template-columns:52mm 1fr;gap:7mm;margin-top:2mm">
+      <svg viewBox="0 0 100 178" width="100%" xmlns="http://www.w3.org/2000/svg">
+        <rect x="22" y="6" width="56" height="12" fill="#241A12"/>
+        <rect x="22" y="18" width="56" height="38" fill="#33251A"/>
+        <rect x="22" y="56" width="56" height="14" fill="#B7A98E"/>
+        <rect x="22" y="70" width="56" height="46" fill="#5B3A24"/>
+        <rect x="22" y="116" width="56" height="34" fill="#8A6B43"/>
+        <rect x="22" y="150" width="56" height="22" fill="#615A4E"/>
+        <g stroke="#4E483E" stroke-width=".6" fill="none"><path d="M22,157 L78,157 M22,164 L78,164 M40,150 L36,157 M60,157 L56,164 M70,150 L67,157"/></g>
+        <g fill="#E9DFC8"><circle cx="35" cy="124" r="1.2"/><circle cx="55" cy="132" r="1"/><circle cx="68" cy="122" r="1.1"/><circle cx="44" cy="141" r="1"/><circle cx="63" cy="144" r=".9"/></g>
+        <g stroke="#4A2E1B" stroke-width=".5" opacity=".8" fill="none"><path d="M28,78 l7,2 M46,88 l7,-2 M62,80 l7,2 M32,100 l7,2 M52,106 l6,-2 M66,98 l6,2"/></g>
+        <g fill="#241A12" opacity=".7"><circle cx="32" cy="28" r=".9"/><circle cx="50" cy="38" r=".8"/><circle cx="66" cy="30" r=".9"/><circle cx="40" cy="48" r=".8"/><circle cx="60" cy="50" r=".8"/></g>
+        <g stroke="#39512A" stroke-width="1" stroke-linecap="round" fill="none">
+          <path d="M30,6 C29,3.5 28,2.5 27,1.4"/><path d="M34,6 C34,3 35,2.2 36,1.4"/><path d="M48,6 C47,3.5 46,2.5 45,1.4"/>
+          <path d="M52,6 C52,3 53,2.2 54,1.4"/><path d="M66,6 C65,3.5 64,2.5 63,1.4"/><path d="M70,6 C70,3 71,2.2 72,1.4"/>
+        </g>
+        <g font-family="Inter" font-size="7" font-weight="700">
+          <text x="10" y="14.5" fill="#241A12">O</text>
+          <text x="10" y="40" fill="#33251A">A</text>
+          <text x="10" y="65.5" fill="#8B8578">E</text>
+          <text x="10" y="96" fill="#5B3A24">B</text>
+          <text x="10" y="136" fill="#8A6B43">C</text>
+          <text x="10" y="164" fill="#4E483E">R</text>
+        </g>
+        <g stroke="#C9BC9E" stroke-width=".4"><path d="M84,6 L84,172"/></g>
+        <g font-family="Inter" font-size="4" fill="#584736">
+          <text x="87" y="8">0 cm</text><text x="87" y="58">40</text><text x="87" y="118">90</text><text x="87" y="153">130</text>
+        </g>
+      </svg>
+      <div>
+        <div class="card" style="margin-bottom:2.4mm;border-left:1.4mm solid #241A12"><h4 style="font-size:9.3pt">O · Orgánico</h4><p>Restos vegetales poco descompuestos en superficie. En praderas pastoreadas casi no existe; es notorio en montes y bañados.</p></div>
+        <div class="card" style="margin-bottom:2.4mm;border-left:1.4mm solid #33251A"><h4 style="font-size:9.3pt">A · Superficial, oscuro</h4><p>La capa fértil: mineral + humus. Acá está la mayor parte de las raíces, los nutrientes y la vida. En los suelos de pradera del Uruguay es el famoso <b>horizonte melánico</b> (negro, espeso, bien estructurado).</p></div>
+        <div class="card" style="margin-bottom:2.4mm;border-left:1.4mm solid #B7A98E"><h4 style="font-size:9.3pt">E · Lavado (álbico)</h4><p>Capa pálida y empobrecida: el agua le llevó arcilla y nutrientes hacia abajo. Su presencia continua es la marca registrada del <b>Planosol</b>.</p></div>
+        <div class="card" style="margin-bottom:2.4mm;border-left:1.4mm solid #5B3A24"><h4 style="font-size:9.3pt">B · Subsuelo de acumulación</h4><p>Recibe lo que baja del A y el E. Si acumula arcilla se llama <b>Bt (B textural)</b>: más pesado, retiene agua y nutrientes pero frena raíces y drenaje cuando es muy denso.</p></div>
+        <div class="card" style="margin-bottom:2.4mm;border-left:1.4mm solid #8A6B43"><h4 style="font-size:9.3pt">C · Material madre alterado</h4><p>Roca o sedimento a medio transformar. En el oeste del país suele traer <b>carbonato de calcio</b> (motas blancas: horizonte Cca).</p></div>
+        <div class="card" style="border-left:1.4mm solid #615A4E"><h4 style="font-size:9.3pt">R · Roca</h4><p>El piso duro. Si aparece a menos de 30 cm de la superficie, el suelo se clasifica como <b>Litosol</b>.</p></div>
+      </div>
+    </div>
+    <p class="small" style="margin-top:2.5mm">Ningún suelo tiene todas las capas: cada gran grupo es, en el fondo, una
+    combinación distinta de estos horizontes — y así lo muestran los perfiles dibujados en cada ficha.</p>
+  </div>
+</section>
+
+<!-- ══════════════════ CAP 1 · PROPIEDADES I ══════════════════ -->
+<section class="page" data-cap="Cap. 1 · Entender el suelo">
+  <div class="pad">
+    <div class="kicker">Capítulo 1 · continuación</div>
+    <h1 class="cap" style="font-size:20pt">Textura y estructura</h1>
+    <p class="lede">Dos propiedades físicas mandan sobre casi todo lo demás: <strong>de qué tamaño son las
+    partículas</strong> (textura) y <strong>cómo se agrupan entre sí</strong> (estructura).</p>
+    <div class="grid2">
+      <div>
+        <h2 style="margin-top:0">Textura: arena, limo y arcilla</h2>
+        <p>Toda la fracción mineral se reparte en tres tamaños: <strong>arena</strong> (gruesa, se siente
+        áspera), <strong>limo</strong> (harinoso, suave) y <strong>arcilla</strong> (finísima, pegajosa mojada
+        y dura seca). La mezcla define la <i>clase textural</i>:</p>
+        <table class="tbl">
+          <tr><th>Clase</th><th>Cómo se comporta</th></tr>
+          <tr><td><b>Arenosa</b></td><td>Filtra rápido, guarda poca agua y pocos nutrientes; liviana para trabajar.</td></tr>
+          <tr><td><b>Franca</b></td><td>El equilibrio ideal: buen drenaje y buena reserva de agua.</td></tr>
+          <tr><td><b>Limosa</b></td><td>Fértil pero se "planchan" con la lluvia (encostramiento) y se erosionan fácil.</td></tr>
+          <tr><td><b>Arcillosa</b></td><td>Muy fértil si es rica en bases; pesada, drena lento, se agrieta al secarse.</td></tr>
+        </table>
+        <div class="nota" style="margin-top:3mm"><b>Prueba de campo del rollito:</b> humedecé un puñado y
+        amasalo. ¿No forma nada? — arenoso. ¿Forma un cilindro que se quiebra? — franco. ¿Podés hacer
+        un anillo sin que se rompa? — arcilloso. Simple y sorprendentemente confiable.</div>
+      </div>
+      <div>
+        <svg viewBox="0 0 100 88" width="100%" xmlns="http://www.w3.org/2000/svg">
+          <polygon points="50,6 94,80 6,80" fill="#FDFBF5" stroke="#7A4A2B" stroke-width="1"/>
+          <polygon points="50,6 71,41 29,41" fill="#A34F2E" opacity=".28"/>
+          <polygon points="29,41 71,41 82,60 18,60" fill="#C1873B" opacity=".3"/>
+          <polygon points="18,60 82,60 94,80 6,80" fill="#D9C9A3" opacity=".55"/>
+          <g font-family="Inter" font-size="5" font-weight="700" fill="#452A17" text-anchor="middle">
+            <text x="50" y="4.5">ARCILLA</text>
+            <text x="3.5" y="86" text-anchor="start">ARENA</text>
+            <text x="96.5" y="86" text-anchor="end">LIMO</text>
+          </g>
+          <g font-family="Inter" font-size="4.4" fill="#452A17" text-anchor="middle">
+            <text x="50" y="32">Arcilloso</text>
+            <text x="50" y="53">Franco arcilloso</text>
+            <text x="32" y="72.5">Franco arenoso</text>
+            <text x="50" y="65.5">Franco</text>
+            <text x="69" y="72.5">Franco limoso</text>
+            <text x="18" y="77.5">Arenoso</text>
+            <text x="82" y="77.5">Limoso</text>
+          </g>
+        </svg>
+        <p class="small" style="text-align:center;margin-top:1mm">Esquema simplificado del triángulo textural:
+        cada suelo es un punto según sus % de arena, limo y arcilla.</p>
+        <div class="nota" style="margin-top:2.5mm">En el Uruguay: los suelos sobre <b>areniscas</b> del
+        noreste y las <b>costas</b> son arenosos; los del <b>basalto</b> y los limos del oeste van de francos
+        a muy arcillosos; los <b>Vertisoles</b> superan el 35 % de arcilla en todo el perfil.</div>
+      </div>
+    </div>
+    <h2>Estructura: cómo se arma el rompecabezas</h2>
+    <div class="grid3" style="grid-template-columns:repeat(5,1fr);gap:3mm">
+      <div class="card"><h4 style="font-size:8.8pt">Granular</h4><p style="font-size:7.6pt">Migas redondeadas, típica de horizontes A de pradera. La mejor para sembrar: aire + agua + raíces felices.</p></div>
+      <div class="card"><h4 style="font-size:8.8pt">En bloques</h4><p style="font-size:7.6pt">Terrones angulosos de los horizontes B arcillosos. Normal en el subsuelo uruguayo.</p></div>
+      <div class="card"><h4 style="font-size:8.8pt">Prismática / columnar</h4><p style="font-size:7.6pt">Columnas verticales. La columnar con techo redondeado delata sodio (Solonetz).</p></div>
+      <div class="card"><h4 style="font-size:8.8pt">Laminar</h4><p style="font-size:7.6pt">Láminas horizontales: pisos compactados por maquinaria o pisoteo. Mala señal.</p></div>
+      <div class="card"><h4 style="font-size:8.8pt">Masiva o suelta</h4><p style="font-size:7.6pt">Sin agregados: o un bloque continuo (masiva) o granos sueltos (arenas). Poca vida.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════ CAP 1 · PROPIEDADES II ══════════════════ -->
+<section class="page" data-cap="Cap. 1 · Entender el suelo">
+  <div class="pad">
+    <div class="kicker">Capítulo 1 · continuación</div>
+    <h1 class="cap" style="font-size:20pt">La química que alimenta: pH, materia orgánica y bases</h1>
+    <div class="grid2">
+      <div>
+        <h2 style="margin-top:0">pH: el termómetro químico</h2>
+        <p>Mide acidez o alcalinidad y regula qué nutrientes están disponibles. La mayoría de los
+        cultivos rinde mejor entre <strong>5,5 y 7</strong>. Por debajo de ≈5,2 se libera <strong>aluminio
+        tóxico</strong> para raíces sensibles (alfalfa, cebada).</p>
+        <svg viewBox="0 0 100 24" width="100%" xmlns="http://www.w3.org/2000/svg">
+          <defs><linearGradient id="phg" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0" stop-color="#A34F2E"/><stop offset=".35" stop-color="#C1873B"/>
+            <stop offset=".55" stop-color="#4F6B3A"/><stop offset=".75" stop-color="#4E7D8C"/>
+            <stop offset="1" stop-color="#5E6E8C"/></linearGradient></defs>
+          <rect x="2" y="4" width="96" height="7" rx="3.5" fill="url(#phg)"/>
+          <g font-family="Inter" font-size="4" fill="#2B2118" text-anchor="middle">
+            <text x="10" y="17.5">4</text><text x="27" y="17.5">5</text><text x="44" y="17.5">6</text>
+            <text x="61" y="17.5">7</text><text x="78" y="17.5">8</text><text x="95" y="17.5">9</text>
+          </g>
+          <g font-family="Inter" font-size="3.6" font-weight="600" fill="#584736">
+            <text x="4" y="22.5">ácido · riesgo Al</text><text x="46" y="22.5">óptimo</text>
+            <text x="98" y="22.5" text-anchor="end">alcalino · calcáreo</text>
+          </g>
+          <path d="M30,4 L30,1 M64,4 L64,1" stroke="#2B2118" stroke-width=".6"/>
+        </svg>
+        <p class="small">La mayoría de los suelos uruguayos anda entre 5,0 y 6,5; los Vertisoles y suelos
+        calcáreos del oeste llegan a 7 u más; los Acrisoles del noreste bajan de 5.</p>
+        <h2>Materia orgánica (MO)</h2>
+        <p>El humus es el corazón de la fertilidad: da estructura, guarda agua y nitrógeno, alimenta la
+        vida del suelo. En praderas vírgenes del basalto o el cristalino supera el 4–6 % en superficie;
+        décadas de agricultura sin rotación la bajan a la mitad — la señal más clara de degradación.</p>
+      </div>
+      <div>
+        <h2 style="margin-top:0">CIC y bases: la despensa</h2>
+        <p>Arcillas y humus funcionan como imanes con carga negativa que retienen nutrientes con carga
+        positiva — los <strong>cationes</strong>: calcio, magnesio, potasio, sodio. La capacidad de esa
+        despensa es la <strong>CIC</strong> (capacidad de intercambio catiónico), y el porcentaje ocupado
+        por nutrientes "buenos" es la <strong>saturación de bases</strong>.</p>
+        <ul class="puntos" style="--fcolor:#7A4A2B">
+          <li><b>CIC alta + bases altas</b> (Vertisoles, Brunosoles éutricos): despensa grande y llena — fertilidad natural alta.</li>
+          <li><b>CIC alta + bases medias</b> (Brunosoles subéutricos): despensa grande a medio llenar.</li>
+          <li><b>CIC baja</b> (Arenosoles, Acrisoles): despensa chica; el fertilizante se lava fácil.</li>
+          <li><b>Sodio dominante</b> (Solonetz): despensa "envenenada" — dispersa la arcilla y arruina la estructura.</li>
+        </ul>
+        <h2>Drenaje</h2>
+        <p>Qué tan rápido se va el agua de más. Va de <strong>bien drenado</strong> (basalto profundo de
+        laderas) a <strong>muy pobremente drenado</strong> (bañados). Los colores lo delatan: pardos y
+        rojizos = aireado; grises y moteados = agua estancada (gley).</p>
+      </div>
+    </div>
+    <h2>Valores de referencia rápidos (0–15 cm)</h2>
+    <table class="tbl">
+      <tr><th>Indicador</th><th>Bajo</th><th>Medio</th><th>Alto / óptimo</th><th>Comentario</th></tr>
+      <tr><td><b>Materia orgánica</b></td><td>&lt; 2 %</td><td>2 – 4 %</td><td>&gt; 4 %</td><td>Interpretar según textura: una arena con 2,5 % está bien; una arcilla con 2,5 % está empobrecida.</td></tr>
+      <tr><td><b>pH (en agua)</b></td><td>&lt; 5,2 muy ácido</td><td>5,2 – 5,8 ácido</td><td>5,8 – 7,0 adecuado</td><td>&gt; 7,5 indica carbonatos o sodio; &lt; 5,2 justifica analizar aluminio.</td></tr>
+      <tr><td><b>Fósforo (Bray I)</b></td><td>&lt; 7 ppm</td><td>7 – 15 ppm</td><td>&gt; 15 ppm</td><td>El nutriente históricamente más deficitario del país; umbral varía por cultivo.</td></tr>
+      <tr><td><b>Potasio intercamb.</b></td><td>&lt; 0,15</td><td>0,15 – 0,34</td><td>≥ 0,35 meq/100 g</td><td>Deficiencias crecientes en zonas agrícolas viejas del litoral y noroeste.</td></tr>
+    </table>
+    <p class="small" style="margin-top:2mm">Rangos orientativos de uso corriente en Uruguay (INIA / FUCREA / Facultad de
+    Agronomía). La recomendación fina siempre la hace un técnico con el análisis, el cultivo y la historia de la chacra.</p>
+  </div>
+</section>
+<!-- ══════════════════ CAP 2 · CLASIFICACIÓN URUGUAYA ══════════════════ -->
+<section class="page compact" id="cap2" data-cap="Cap. 2 · La clasificación uruguaya">
+  <div class="pad">
+    <div class="caphead">
+      <div class="capnum">2</div>
+      <div>
+        <div class="kicker">Capítulo dos</div>
+        <h1 class="cap" style="margin-bottom:0">La clasificación uruguaya</h1>
+      </div>
+    </div>
+    <p class="lede">El Uruguay tiene clasificación de suelos propia desde 1976, cuando el equipo de
+    Altamirano y colaboradores publicó la <strong>Carta de Reconocimiento de Suelos del Uruguay</strong>
+    (escala 1:1.000.000, MGAP + Facultad de Agronomía). Fue revisada en 2007 para alinearla con los
+    sistemas internacionales, y sigue siendo el idioma oficial: CONEAT, cartas de suelos y planes de
+    uso hablan en estos términos.</p>
+    <div class="grid2">
+      <div>
+        <h2 style="margin-top:0">Seis órdenes, trece grandes grupos</h2>
+        <p>El sistema agrupa los suelos por su <strong>proceso dominante de formación</strong>: primero en
+        <strong>órdenes</strong> (la familia grande) y dentro de ellos en <strong>grandes grupos</strong> —
+        los nombres que vas a escuchar en el campo y que este manual desarrolla ficha por ficha.</p>
+        <table class="tbl">
+          <tr><th>Orden</th><th>Idea central</th><th>Grandes grupos</th></tr>
+          <tr><td><b>I · Poco desarrollados</b></td><td>Jóvenes: la roca, la arena o el aluvión todavía "se notan".</td><td>Litosoles, Arenosoles, Fluvisoles, Inceptisoles</td></tr>
+          <tr><td><b>II · Melánicos</b></td><td>El corazón del país: A negro, espeso, rico en bases.</td><td>Brunosoles, Vertisoles</td></tr>
+          <tr><td><b>III · Saturados lixiviados</b></td><td>Lavados (con Bt) pero aún ricos en bases.</td><td>Argisoles, Planosoles</td></tr>
+          <tr><td><b>IV · Desaturados lixiviados</b></td><td>Lavados y ácidos, pobres en bases.</td><td>Luvisoles, Acrisoles</td></tr>
+          <tr><td><b>V · Halomórficos</b></td><td>Dominados por sodio.</td><td>Solonetz, Solonetz solodizado, Solod</td></tr>
+          <tr><td><b>VI · Hidromórficos</b></td><td>Formados bajo exceso de agua.</td><td>Gleysoles, Histosoles</td></tr>
+        </table>
+      </div>
+      <div>
+        <h2 style="margin-top:0">Cómo leer un nombre de suelo</h2>
+        <p>Después del gran grupo, el nombre agrega apellidos que afinan el retrato. Desarmemos dos:</p>
+        <div class="card" style="margin-bottom:3mm">
+          <h4 style="font-family:var(--fd)">Brunosol <span style="color:#7A4A2B">Éutrico</span> <span style="color:#A34F2E">Típico</span></h4>
+          <p style="margin-top:1mm"><b>Brunosol</b> → suelo de pradera pardo-negro (gran grupo) ·
+          <b>Éutrico</b> → rico en bases, fértil ·
+          <b>Típico</b> → con horizonte Bt de desarrollo moderado.</p>
+        </div>
+        <div class="card" style="margin-bottom:3mm">
+          <h4 style="font-family:var(--fd)">Planosol <span style="color:#7A4A2B">Dístrico</span> <span style="color:#A34F2E">Ócrico</span></h4>
+          <p style="margin-top:1mm"><b>Planosol</b> → suelo de planicie con capa lavada sobre Bt denso ·
+          <b>Dístrico</b> → pobre en bases ·
+          <b>Ócrico</b> → horizonte superficial claro y delgado.</p>
+        </div>
+        <h3>Los "apellidos" más comunes</h3>
+        <table class="tbl">
+          <tr><th style="width:26mm">Término</th><th>Significa</th></tr>
+          <tr><td><b>Éutrico</b></td><td>Saturación de bases alta: fértil.</td></tr>
+          <tr><td><b>Subéutrico</b></td><td>Saturación media: fertilidad intermedia.</td></tr>
+          <tr><td><b>Dístrico</b></td><td>Saturación baja: ácido y pobre.</td></tr>
+          <tr><td><b>Háplico</b></td><td>Perfil simple, sin horizonte Bt.</td></tr>
+          <tr><td><b>Típico</b></td><td>Con Bt de desarrollo moderado.</td></tr>
+          <tr><td><b>Lúvico</b></td><td>Con Bt fuerte, bien marcado.</td></tr>
+          <tr><td><b>Melánico</b></td><td>A oscuro, espeso, bien provisto de humus.</td></tr>
+          <tr><td><b>Úmbrico</b></td><td>A oscuro pero ácido y pobre en bases.</td></tr>
+          <tr><td><b>Ócrico</b></td><td>A claro, delgado o pobre en humus.</td></tr>
+        </table>
+        <p class="small" style="margin-top:2mm">Detrás vienen la <b>familia textural</b> (p. ej. "franco
+        fino") y la <b>fase</b> (superficial, pedregosa…), que terminan de describir el manejo.</p>
+      </div>
+    </div>
+    <div class="nota"><b>2007, la puesta a punto:</b> la revisión de Durán y García Préchac ajustó
+    definiciones para que la clasificación dialogue mejor con WRB y Soil Taxonomy — por ejemplo, el
+    piso de arcilla del Vertisol bajó de 35 % a 30 %. En este manual usamos los criterios clásicos de
+    1976, que siguen siendo la referencia de CONEAT y de la cartografía vigente, señalando el cambio
+    donde corresponde.</div>
+  </div>
+</section>
+
+<!-- ══════════════════ CAP 2 · REGIONES ══════════════════ -->
+<section class="page compact" data-cap="Cap. 2 · La clasificación uruguaya">
+  <div class="pad">
+    <div class="kicker">Capítulo 2 · continuación</div>
+    <h1 class="cap" style="font-size:20pt;margin-bottom:2mm">Un mapa mental de las regiones de suelo</h1>
+    <div style="display:grid;grid-template-columns:78mm 1fr;gap:6mm;align-items:start">
+      <div>
+        <svg viewBox="-4 -2 160 148" width="100%" xmlns="http://www.w3.org/2000/svg">
+          <path d="M25.2,5.6 L58.8,11.2 L70,22.4 L84,25.2 L98,36.4 L114.8,53.2 L128.8,67.2 L142.8,72.8
+                   L148.4,84 L142.8,103.6 L128.8,123.2 L99.4,139.2 L64.4,137.2 L44.8,128.8 L18.2,125.2
+                   L2.8,109.2 L4.2,86.8 L11.2,64.4 L15.4,39.2 L19.6,22.4 Z"
+                fill="#FDFBF5" stroke="#7A4A2B" stroke-width="1.4" stroke-linejoin="round"/>
+          <g stroke="none">
+            <path d="M22,12 L62,16 L78,26 L86,32 L80,50 L62,68 L38,72 L18,56 L16,32 Z" fill="#A34F2E" opacity=".8"/>
+            <path d="M80,26 L95,33 L110,50 L98,62 L80,52 L84,34 Z" fill="#DDB56E" opacity=".9"/>
+            <path d="M9,68 L34,72 L38,94 L26,110 L8,102 L7,84 Z" fill="#C1873B" opacity=".85"/>
+            <path d="M40,76 L66,72 L92,86 L86,110 L56,118 L38,104 Z" fill="#8A6B43" opacity=".85"/>
+            <path d="M96,66 L112,72 L120,94 L107,118 L96,126 L90,108 L92,86 Z" fill="#7E7468" opacity=".85"/>
+            <path d="M114,58 L138,74 L144,86 L138,101 L124,118 L112,96 L110,72 Z" fill="#5E7570" opacity=".85"/>
+            <path d="M30,112 L58,120 L86,122 L94,131 L62,133 L28,124 Z" fill="#39512A" opacity=".85"/>
+          </g>
+          <g font-family="Inter" font-size="7.5" font-weight="700" fill="#FDFBF5" text-anchor="middle">
+            <text x="48" y="42">1</text><text x="93" y="46">2</text><text x="22" y="90">3</text>
+            <text x="64" y="96">4</text><text x="105" y="98">5</text><text x="126" y="92">6</text>
+            <text x="58" y="129">7</text>
+          </g>
+          <g font-family="Inter" font-size="4.6" fill="#584736">
+            <text x="2" y="145">Esquema simplificado; los límites reales son graduales.</text>
+          </g>
+        </svg>
+        <div class="legend">
+          <span><i style="background:#A34F2E"></i>1 Basalto</span>
+          <span><i style="background:#DDB56E"></i>2 Areniscas NE</span>
+          <span><i style="background:#C1873B"></i>3 Litoral oeste</span>
+          <span><i style="background:#8A6B43"></i>4 Cristalino</span>
+          <span><i style="background:#7E7468"></i>5 Sierras del Este</span>
+          <span><i style="background:#5E7570"></i>6 Planicies del Este</span>
+          <span><i style="background:#39512A"></i>7 Sur</span>
+        </div>
+      </div>
+      <div>
+        <p style="font-size:8.6pt">Con clima parecido en todo el país, la geología dibuja el mapa: cada
+        región tiene su material madre y, con él, su elenco de suelos. Estas siete regiones (más las
+        planicies de los ríos, que atraviesan todas) explican casi todo lo que vas a ver al costado
+        de cualquier ruta. Para dimensionar: el cristalino ronda las 2,7 millones de hectáreas y las
+        planicies de la Merín, 1,6 millones.</p>
+        <table class="tbl" style="font-size:6.9pt">
+          <tr><th>Región</th><th>Material madre</th><th>Suelos dominantes</th><th>Vocación típica</th></tr>
+          <tr><td><b>1 · Cuesta basáltica</b><br><span class="small">Artigas → Durazno; la más extensa (≈ ¼ del país)</span></td><td>Coladas de basalto</td><td>Litosoles en lo superficial; Brunosoles éutricos y Vertisoles en lo profundo</td><td>Ganadería extensiva y lana fina; agricultura y pasturas en zonas profundas</td></tr>
+          <tr><td><b>2 · Areniscas del NE</b><br><span class="small">Rivera, Tacuarembó, N de Cerro Largo</span></td><td>Areniscas gondwánicas (Tacuarembó, Yaguarí)</td><td>Luvisoles, Acrisoles, Arenosoles</td><td>Forestación, ganadería; sobre el acuífero Guaraní</td></tr>
+          <tr><td><b>3 · Litoral oeste</b><br><span class="small">Salto → Colonia</span></td><td>Limos calcáreos (Fray Bentos) y sedimentos</td><td>Brunosoles éutricos, Vertisoles</td><td>La gran zona agrícola: soja, trigo, cebada; cítricos al norte</td></tr>
+          <tr><td><b>4 · Escudo cristalino</b><br><span class="small">Centro-sur del país</span></td><td>Granitos y gneises</td><td>Brunosoles subéutricos y éutricos; Litosoles en sierras</td><td>Ganadería, lechería, agricultura parcial</td></tr>
+          <tr><td><b>5 · Sierras del Este</b><br><span class="small">Lavalleja, Maldonado, O de Rocha y T. y Tres</span></td><td>Rocas cristalinas, cuarcitas</td><td>Litosoles, Inceptisoles, Brunosoles</td><td>Ganadería serrana; forestación puntual</td></tr>
+          <tr><td><b>6 · Planicies del Este</b><br><span class="small">Cuenca de la Laguna Merín</span></td><td>Sedimentos aluviales y lagunares recientes</td><td>Planosoles, Gleysoles, Argisoles; Histosoles en bañados</td><td>Arroz en rotación con pasturas; humedales protegidos</td></tr>
+          <tr><td><b>7 · Sur</b><br><span class="small">San José, Canelones, Montevideo</span></td><td>Limos de Libertad (tipo loess)</td><td>Brunosoles éutricos y subéutricos profundos</td><td>Horticultura, lechería, cereales</td></tr>
+          <tr><td><b>+ · Planicies fluviales y costas</b><br><span class="small">Grandes ríos y costas</span></td><td>Aluviones recientes; arenas</td><td>Fluvisoles, Gleysoles, Arenosoles</td><td>Pastoreo estival, monte nativo, forestación costera</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════ CAP 3 · CÓMO LEER LAS FICHAS ══════════════════ -->
+<section class="page" id="fichas" data-cap="Cap. 3 · Fichas de suelos">
+  <div class="pad">
+    <div class="caphead">
+      <div class="capnum">3</div>
+      <div>
+        <div class="kicker">Capítulo tres</div>
+        <h1 class="cap" style="margin-bottom:0">Los suelos del Uruguay, uno por uno</h1>
+      </div>
+    </div>
+    <p class="lede">Trece fichas — los diez grandes grupos más extendidos, los poco frecuentes y la
+    familia halomórfica completa. Todas con la misma anatomía, para que comparar sea automático.</p>
+    <div class="grid2">
+      <div>
+        <h2 style="margin-top:0">Qué trae cada ficha</h2>
+        <ul class="puntos">
+          <li><b>El perfil dibujado:</b> los horizontes típicos del grupo, con sus espesores y señas particulares (grietas, motas, carbonatos, roca).</li>
+          <li><b>De un vistazo:</b> orden, subdivisiones, equivalencia internacional (WRB y USDA), regiones donde aparece, extensión relativa, fertilidad y drenaje.</li>
+          <li><b>¿Cómo es?</b> — composición: horizontes, texturas y química, en palabras simples.</li>
+          <li><b>¿Dónde aparece?</b> — regiones, paisajes y posiciones de ladera típicas.</li>
+          <li><b>¿Para qué sirve?</b> — aptitud de uso real: qué produce bien y qué no.</li>
+          <li><b>Limitantes y manejo</b> — los cuidados que pide para no degradarse.</li>
+        </ul>
+        <div class="nota" style="margin-top:3.5mm"><b>Extensión relativa</b> usa cuatro categorías
+        honestas — <i>muy extendido, común, localizado, raro</i> — porque las superficies exactas por
+        grupo dependen de la escala del mapa que se use. Donde hay cifras oficiales, las citamos.</div>
+      </div>
+      <div>
+        <h2 style="margin-top:0">Las trece fichas</h2>
+        <table class="tbl">
+          <tr><th>#</th><th>Suelo</th><th>En una frase</th></tr>
+          <tr><td>01</td><td><b>Brunosol</b></td><td>El suelo insignia de la pradera uruguaya.</td></tr>
+          <tr><td>02</td><td><b>Vertisol</b></td><td>Negro, arcilloso y agrietado; potencia química pura.</td></tr>
+          <tr><td>03</td><td><b>Argisol</b></td><td>Lavado con subsuelo arcilloso; el pariente discreto.</td></tr>
+          <tr><td>04</td><td><b>Planosol</b></td><td>Planicie, capa blanqueada y piso impermeable: arroz.</td></tr>
+          <tr><td>05</td><td><b>Luvisol</b></td><td>El pardo de las areniscas, moderadamente ácido.</td></tr>
+          <tr><td>06</td><td><b>Acrisol</b></td><td>Rojizo, ácido y con aluminio; vocación forestal.</td></tr>
+          <tr><td>07</td><td><b>Litosol</b></td><td>Delgado, con la roca a un palmo; reino del campo natural.</td></tr>
+          <tr><td>08</td><td><b>Inceptisol</b></td><td>Joven de serranía, a mitad de camino.</td></tr>
+          <tr><td>09</td><td><b>Arenosol</b></td><td>Arena pura: filtra todo, retiene poco.</td></tr>
+          <tr><td>10</td><td><b>Fluvisol</b></td><td>Hecho de crecidas, capa sobre capa.</td></tr>
+          <tr><td>11</td><td><b>Gleysol</b></td><td>Gris de agua: vive con la napa a flor.</td></tr>
+          <tr><td>12</td><td><b>Histosol</b></td><td>Turba de bañado: materia orgánica pura.</td></tr>
+          <tr><td>13</td><td><b>Halomórficos</b></td><td>Los del sodio: Solonetz y compañía.</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div id="fichaslot"></div>
+<!-- ══════════════════ CAP 4 · WRB ══════════════════ -->
+<section class="page" id="cap4" data-cap="Cap. 4 · Clasificaciones internacionales">
+  <div class="pad">
+    <div class="caphead">
+      <div class="capnum">4</div>
+      <div>
+        <div class="kicker">Capítulo cuatro</div>
+        <h1 class="cap" style="margin-bottom:0">Las clasificaciones internacionales</h1>
+      </div>
+    </div>
+    <p class="lede" style="margin-bottom:3mm">En el mundo se hablan dos idiomas de suelos: la
+    <strong>WRB</strong> (Base de Referencia Mundial, FAO/IUSS — el "esperanto" usado en mapas globales
+    y en casi toda América Latina y Europa) y la <strong>Soil Taxonomy</strong> del USDA (el sistema
+    estadounidense). La clasificación uruguaya conversa con los dos.</p>
+    <h2 style="margin-top:0">WRB: 32 grupos de referencia para todos los suelos del planeta
+      <span class="tag uy" style="vertical-align:1pt;margin-left:2mm">● = con equivalente en Uruguay</span></h2>
+    <div class="wrbgrid">
+      <div class="w uy"><div class="wn">Acrisols</div><div class="wd">Ácidos con subsuelo arcilloso pobre en bases</div></div>
+      <div class="w"><div class="wn">Alisols</div><div class="wd">Ácidos con mucho aluminio y arcilla activa</div></div>
+      <div class="w"><div class="wn">Andosols</div><div class="wd">De cenizas volcánicas, esponjosos</div></div>
+      <div class="w"><div class="wn">Anthrosols</div><div class="wd">Creados por siglos de uso humano</div></div>
+      <div class="w uy"><div class="wn">Arenosols</div><div class="wd">Arenas profundas con poco desarrollo</div></div>
+      <div class="w"><div class="wn">Calcisols</div><div class="wd">De zonas secas, acumulan carbonato de calcio</div></div>
+      <div class="w uy"><div class="wn">Cambisols</div><div class="wd">Jóvenes, con horizonte B apenas insinuado</div></div>
+      <div class="w"><div class="wn">Chernozems</div><div class="wd">Praderas negras profundas con carbonatos</div></div>
+      <div class="w"><div class="wn">Cryosols</div><div class="wd">Con permafrost (suelo congelado)</div></div>
+      <div class="w"><div class="wn">Durisols</div><div class="wd">Con capa endurecida de sílice</div></div>
+      <div class="w"><div class="wn">Ferralsols</div><div class="wd">Tropicales viejos, muy lavados, rojizos</div></div>
+      <div class="w uy"><div class="wn">Fluvisols</div><div class="wd">De aluviones recientes, estratificados</div></div>
+      <div class="w uy"><div class="wn">Gleysols</div><div class="wd">Saturados por napa: grises y moteados</div></div>
+      <div class="w"><div class="wn">Gypsisols</div><div class="wd">De desierto, acumulan yeso</div></div>
+      <div class="w uy"><div class="wn">Histosols</div><div class="wd">Orgánicos: turbas de humedal</div></div>
+      <div class="w"><div class="wn">Kastanozems</div><div class="wd">Praderas castañas de zonas más secas</div></div>
+      <div class="w uy"><div class="wn">Leptosols</div><div class="wd">Delgados sobre roca (nuestros Litosoles)</div></div>
+      <div class="w"><div class="wn">Lixisols</div><div class="wd">Lavados tropicales con arcilla poco activa</div></div>
+      <div class="w uy"><div class="wn">Luvisols</div><div class="wd">Con subsuelo arcilloso aún rico en bases</div></div>
+      <div class="w"><div class="wn">Nitisols</div><div class="wd">Tropicales rojos, profundos y brillosos</div></div>
+      <div class="w uy"><div class="wn">Phaeozems</div><div class="wd">Praderas húmedas oscuras — el grupo uruguayo por excelencia</div></div>
+      <div class="w uy"><div class="wn">Planosols</div><div class="wd">Capa lavada sobre subsuelo denso e impermeable</div></div>
+      <div class="w"><div class="wn">Plinthosols</div><div class="wd">Con plintita ferruginosa que endurece</div></div>
+      <div class="w"><div class="wn">Podzols</div><div class="wd">De bosques fríos, con ceniza lavada y B oscuro</div></div>
+      <div class="w uy"><div class="wn">Regosols</div><div class="wd">Muy jóvenes en materiales sueltos</div></div>
+      <div class="w"><div class="wn">Retisols</div><div class="wd">Con lenguas blanqueadas entrando al B</div></div>
+      <div class="w"><div class="wn">Solonchaks</div><div class="wd">Salinos: sal visible en zonas áridas</div></div>
+      <div class="w uy"><div class="wn">Solonetz</div><div class="wd">Sódicos con B columnar denso</div></div>
+      <div class="w"><div class="wn">Stagnosols</div><div class="wd">Encharcados por agua de lluvia colgada</div></div>
+      <div class="w"><div class="wn">Technosols</div><div class="wd">Hechos de escombros y materiales artificiales</div></div>
+      <div class="w"><div class="wn">Umbrisols</div><div class="wd">A oscuro pero ácido, de zonas húmedas</div></div>
+      <div class="w uy"><div class="wn">Vertisols</div><div class="wd">Arcillosos expansivos que se agrietan</div></div>
+    </div>
+    <p class="small" style="margin-top:2.5mm">Cuarta edición (IUSS, 2022). Algunos suelos uruguayos puntuales
+    caen además en Alisols, Stagnosols o Umbrisols según el perfil. Los 19 grupos restantes necesitan
+    desiertos, volcanes, trópicos o hielo — paisajes que el Uruguay no tiene.</p>
+  </div>
+</section>
+
+<!-- ══════════════════ CAP 4 · SOIL TAXONOMY ══════════════════ -->
+<section class="page" data-cap="Cap. 4 · Clasificaciones internacionales">
+  <div class="pad">
+    <div class="kicker">Capítulo 4 · continuación</div>
+    <h1 class="cap" style="font-size:20pt">Soil Taxonomy (USDA): los 12 órdenes</h1>
+    <p class="lede">El sistema estadounidense ordena todos los suelos del mundo en 12 órdenes según
+    horizontes diagnósticos, humedad y temperatura. Es el idioma de la literatura científica en inglés
+    — y el Uruguay tiene presencia en 7 de los 12.</p>
+    <table class="tbl">
+      <tr><th style="width:24mm">Orden</th><th>Idea central</th><th style="width:62mm">¿En Uruguay?</th></tr>
+      <tr><td><b>Mollisols</b></td><td>Suelos de pradera: A oscuro, espeso, fértil (epipedón mólico).</td><td><span class="tag uy">Dominante</span> Brunosoles y Argisoles; el orden que define al país</td></tr>
+      <tr><td><b>Vertisols</b></td><td>Arcillas expansivas que se agrietan y "se dan vuelta".</td><td><span class="tag uy">Sí</span> Vertisoles del basalto y el oeste</td></tr>
+      <tr><td><b>Alfisols</b></td><td>Lavados con Bt, todavía bien provistos de bases.</td><td><span class="tag uy">Sí</span> Planosoles, Luvisoles y Argisoles más lavados</td></tr>
+      <tr><td><b>Ultisols</b></td><td>Lavados y ácidos, pobres en bases.</td><td><span class="tag uy">Sí</span> Acrisoles de las areniscas del NE</td></tr>
+      <tr><td><b>Entisols</b></td><td>Recién nacidos: casi sin horizontes.</td><td><span class="tag uy">Sí</span> Litosoles, Arenosoles y Fluvisoles</td></tr>
+      <tr><td><b>Inceptisols</b></td><td>Jóvenes con desarrollo incipiente.</td><td><span class="tag uy">Sí</span> Inceptisoles de serranía</td></tr>
+      <tr><td><b>Histosols</b></td><td>Orgánicos de humedal (turba).</td><td><span class="tag uy">Sí</span> Histosoles de los bañados del este</td></tr>
+      <tr><td><b>Aridisols</b></td><td>De desierto: sales, yeso, carbonatos.</td><td><span class="tag no">No</span> falta el clima árido</td></tr>
+      <tr><td><b>Andisols</b></td><td>De cenizas volcánicas recientes.</td><td><span class="tag no">No</span> sin volcanismo activo</td></tr>
+      <tr><td><b>Spodosols</b></td><td>De bosques fríos sobre arenas ácidas.</td><td><span class="tag no">No</span> (muy marginal, discutido)</td></tr>
+      <tr><td><b>Oxisols</b></td><td>Tropicales viejísimos, lavados al extremo.</td><td><span class="tag no">No</span> clima templado</td></tr>
+      <tr><td><b>Gelisols</b></td><td>Con permafrost.</td><td><span class="tag no">No</span> obviamente</td></tr>
+    </table>
+    <div class="nota" style="margin-top:3.5mm"><b>El Uruguay en el mapa mundial:</b> el país integra —
+    junto con la Pampa argentina, las Grandes Llanuras de Estados Unidos y las estepas de Ucrania —
+    el selecto club de las <b>regiones de Mollisols</b>: las praderas negras que concentran buena parte
+    de la producción mundial de granos y carne. Es una lotería geológica que pocos países se sacaron,
+    y la razón de fondo de que la conservación del suelo sea acá política de Estado.</div>
+    <h2>Los tres sistemas, lado a lado</h2>
+    <table class="tbl">
+      <tr><th>Sistema</th><th>Quién lo mantiene</th><th>Unidad principal</th><th>Para qué sirve mejor</th></tr>
+      <tr><td><b>Clasificación uruguaya</b> (1976, rev. 2007)</td><td>MGAP / Facultad de Agronomía</td><td>6 órdenes · 13 grandes grupos</td><td>Cartas nacionales, CONEAT, planes de uso: el idioma local</td></tr>
+      <tr><td><b>WRB</b> (4ª ed., 2022)</td><td>IUSS / FAO</td><td>32 grupos de referencia + calificadores</td><td>Comparar países, mapas globales, publicaciones internacionales</td></tr>
+      <tr><td><b>Soil Taxonomy</b> (12ª ed. de claves)</td><td>USDA–NRCS (EE.UU.)</td><td>12 órdenes → subórdenes → grandes grupos…</td><td>Literatura científica, agronomía cuantitativa</td></tr>
+    </table>
+  </div>
+</section>
+
+<!-- ══════════════════ CAP 4 · CORRELACIÓN ══════════════════ -->
+<section class="page" data-cap="Cap. 4 · Clasificaciones internacionales">
+  <div class="pad">
+    <div class="kicker">Capítulo 4 · continuación</div>
+    <h1 class="cap" style="font-size:20pt">Tabla de correlación: Uruguay ↔ mundo</h1>
+    <p class="lede">La piedra Rosetta del manual: cada gran grupo uruguayo con su equivalente más
+    cercano en los dos sistemas internacionales.</p>
+    <table class="tbl" style="font-size:8.2pt">
+      <tr><th>Gran grupo (Uruguay)</th><th>WRB (FAO/IUSS)</th><th>Soil Taxonomy (USDA)</th><th>Observación</th></tr>
+      <tr><td><b>Brunosol</b></td><td>Phaeozems</td><td>Mollisols (Argiudolls, Hapludolls)</td><td>El binomio pradera por excelencia</td></tr>
+      <tr><td><b>Vertisol</b></td><td>Vertisols</td><td>Vertisols (Uderts)</td><td>Mismo nombre en los tres sistemas</td></tr>
+      <tr><td><b>Argisol</b></td><td>Phaeozems lúvicos / Planosols</td><td>Mollisols (Argiudolls, Argialbolls)</td><td>Según cuán abrupto sea el paso al Bt</td></tr>
+      <tr><td><b>Planosol</b></td><td>Planosols</td><td>Alfisols (Albaqualfs) / Argialbolls</td><td>El horizonte E álbico manda</td></tr>
+      <tr><td><b>Luvisol</b></td><td>Luvisols / Lixisols</td><td>Alfisols (Hapludalfs, Paleudalfs)</td><td>Ojo: "Luvisol" no significa lo mismo en UY y WRB</td></tr>
+      <tr><td><b>Acrisol</b></td><td>Acrisols</td><td>Ultisols (Hapludults, Paleudults)</td><td>Acidez y aluminio como bandera</td></tr>
+      <tr><td><b>Litosol</b></td><td>Leptosols</td><td>Entisols líticos (Udorthents) / Mollisols líticos</td><td>Roca a menos de 30 cm</td></tr>
+      <tr><td><b>Inceptisol</b></td><td>Cambisols / Regosols</td><td>Inceptisols (Dystrudepts, Eutrudepts)</td><td>Nombre tomado del propio USDA</td></tr>
+      <tr><td><b>Arenosol</b></td><td>Arenosols</td><td>Entisols (Udipsamments)</td><td>Arena de punta a punta</td></tr>
+      <tr><td><b>Fluvisol</b></td><td>Fluvisols</td><td>Entisols (Fluvents)</td><td>Estratos de crecidas</td></tr>
+      <tr><td><b>Gleysol</b></td><td>Gleysols</td><td>Sufijo "aqu-": Endoaquolls, Epiaqualfs…</td><td>El USDA reparte el hidromorfismo entre órdenes</td></tr>
+      <tr><td><b>Histosol</b></td><td>Histosols</td><td>Histosols (Haplosaprists, Haplohemists)</td><td>Idéntico concepto en los tres</td></tr>
+      <tr><td><b>Solonetz / Solod</b></td><td>Solonetz (Solodic)</td><td>Alfisols nátricos (Natraqualfs, Natrudalfs)</td><td>El sodio es el protagonista</td></tr>
+    </table>
+    <div class="nota" style="margin-top:3.5mm"><b>Advertencia de traductor:</b> las correlaciones son
+    <i>orientativas</i>. Cada sistema corta la realidad con límites propios (porcentajes de arcilla,
+    espesores, saturaciones medidas distinto), así que un perfil concreto puede caer en el casillero
+    vecino. Para trabajo fino, clasificar con las claves de cada sistema en la mano.</div>
+    <h2>¿Por qué "Luvisol" confunde?</h2>
+    <p>Es el falso amigo clásico: en la clasificación <strong>uruguaya</strong>, Luvisol es un suelo
+    <i>desaturado</i> (pobre en bases) de las areniscas del noreste; en la <strong>WRB</strong>, Luvisols
+    son suelos con Bt <i>bien provistos</i> de bases. Por eso muchos Luvisoles uruguayos terminan como
+    Lixisols o hasta Acrisols en WRB. Cuando leas literatura internacional, chequeá siempre qué sistema
+    está usando el autor.</p>
+  </div>
+</section>
+
+<!-- ══════════════════ CAP 5 · CONEAT ══════════════════ -->
+<section class="page" id="cap5" data-cap="Cap. 5 · CONEAT">
+  <div class="pad">
+    <div class="caphead">
+      <div class="capnum">5</div>
+      <div>
+        <div class="kicker">Capítulo cinco</div>
+        <h1 class="cap" style="margin-bottom:0">CONEAT: el índice que le pone nota a la tierra</h1>
+      </div>
+    </div>
+    <p class="lede">Si alguna vez escuchaste "ese campo es CONEAT 140", esto es lo que significa. Es el
+    sistema uruguayo que califica la <strong>capacidad productiva</strong> de cada padrón rural — y mueve
+    precios de campos, rentas e impuestos.</p>
+    <div class="grid2">
+      <div>
+        <h2 style="margin-top:0">Qué es</h2>
+        <p>La <strong>Comisión Nacional de Estudio Agronómico de la Tierra</strong> (CO.N.E.A.T.) fue creada
+        por la <strong>ley 13.695 de 1968</strong> para fijar la capacidad productiva media de cada inmueble
+        rural. El resultado es un mapa nacional de <strong>188 grupos de suelos</strong>, cada uno con un
+        <strong>índice de productividad</strong> medido en su capacidad de producir <strong>carne bovina,
+        ovina y lana en pie</strong>.</p>
+        <ul class="puntos">
+          <li><b>Índice 100</b> = la productividad media del país.</li>
+          <li>La escala va de <b>0</b> (dunas, bañados permanentes) a <b>263</b> (las mejores praderas del litoral oeste).</li>
+          <li>El índice de un padrón es el <b>promedio ponderado</b> de los grupos que lo componen.</li>
+        </ul>
+        <h2>Para qué se usa</h2>
+        <ul class="puntos">
+          <li><b>Mercado de tierras:</b> el precio por hectárea se compara siempre "ajustado por CONEAT".</li>
+          <li><b>Impuestos y aportes rurales</b>, que se calculan sobre la capacidad productiva.</li>
+          <li><b>Políticas públicas:</b> colonización, ordenamiento, planes de uso.</li>
+        </ul>
+      </div>
+      <div>
+        <h2 style="margin-top:0">Cómo leer un grupo CONEAT</h2>
+        <p>Los grupos se nombran con códigos que arrancan identificando la <strong>región geomorfológica</strong>
+        y terminan afinando el tipo de suelo. Algunos ejemplos para orientarse:</p>
+        <table class="tbl">
+          <tr><th>Código</th><th>Región / lectura</th><th>Productividad típica</th></tr>
+          <tr><td><b>1.10 – 1.12</b></td><td>Basalto superficial (Litosoles)</td><td>Baja a media; ganadería de lana fina</td></tr>
+          <tr><td><b>1.21 – 1.24</b></td><td>Basalto profundo (Brunosoles, Vertisoles)</td><td>Media a alta</td></tr>
+          <tr><td><b>5.xx</b></td><td>Cristalino y sedimentos sobre cristalino</td><td>Media a alta según profundidad</td></tr>
+          <tr><td><b>6.xx</b></td><td>Areniscas de Yaguarí (NE)</td><td>Media</td></tr>
+          <tr><td><b>7.xx</b></td><td>Areniscas de Tacuarembó (NE)</td><td>Baja a media; vocación forestal</td></tr>
+          <tr><td><b>03</b></td><td>Planicies inundables y bañados</td><td>Muy baja para carne/lana (¡pero arrozales valiosos!)</td></tr>
+        </table>
+        <div class="nota" style="margin-top:3mm"><b>Dónde consultarlo:</b> en el visualizador CONEAT del
+        MGAP (gub.uy → "Consulta CONEAT") ponés el número de padrón y te devuelve el mapa de grupos y el
+        índice. Gratis y al instante.</div>
+      </div>
+    </div>
+    <div class="nota"><b>Lo que CONEAT no dice:</b> el índice mide capacidad para <b>carne y lana</b>, no
+    aptitud agrícola ni forestal. Un Planosol arrocero o un Acrisol forestal pueden tener CONEAT modesto
+    y aun así ser muy rentables en su vocación. Usalo como lo que es: una vara común, no un veredicto.</div>
+  </div>
+</section>
+
+<!-- ══════════════════ CAP 6 · CONSERVACIÓN ══════════════════ -->
+<section class="page compact" id="cap6" data-cap="Cap. 6 · Uso y conservación">
+  <div class="pad">
+    <div class="caphead">
+      <div class="capnum">6</div>
+      <div>
+        <div class="kicker">Capítulo seis</div>
+        <h1 class="cap" style="margin-bottom:0">Usar sin gastar: erosión, ley y buenas prácticas</h1>
+      </div>
+    </div>
+    <p class="lede">El suelo se forma a ritmo de siglos y se pierde a ritmo de tormentas. La erosión
+    hídrica es el principal problema ambiental del agro uruguayo — y también el área donde el país es
+    citado como ejemplo mundial de política pública.</p>
+    <div class="grid2">
+      <div>
+        <h2 style="margin-top:0">La erosión, en corto</h2>
+        <p>Cada lluvia sobre suelo desnudo arranca partículas y se las lleva ladera abajo: primero en
+        láminas invisibles, después en surcos, al final en cárcavas. Se pierde justo lo mejor — el
+        horizonte A con su materia orgánica. La ecuación universal <strong>USLE/RUSLE</strong> la estima
+        multiplicando lluvia × suelo × pendiente × cultivo × prácticas: en Uruguay se usa para que cada
+        chacra demuestre que pierde menos de la <strong>tolerancia (~7 toneladas por hectárea y por año,
+        o 5 si el suelo ya está degradado)</strong>.</p>
+        <h2>La ley y los planes de uso</h2>
+        <ul class="puntos">
+          <li>El <b>decreto-ley 15.239 (1981)</b> declaró de interés nacional la conservación de suelos y aguas; el MGAP es la autoridad (reglamentos 333/004 y 405/008).</li>
+          <li>Desde 2013, la agricultura debe presentar <b>Planes de Uso y Manejo Responsable</b>: la rotación de cultivos planificada, firmada por ingeniero/a agrónomo/a, con erosión estimada dentro de la tolerancia.</li>
+          <li>Uruguay fue <b>pionero mundial</b> en exigirlo a escala nacional — la FAO lo cita como ejemplo de buenas prácticas.</li>
+        </ul>
+      </div>
+      <div>
+        <h2 style="margin-top:0">El botiquín de buenas prácticas</h2>
+        <ul class="puntos">
+          <li><b>Siembra directa</b> + rastrojo en superficie: el suelo nunca queda desnudo.</li>
+          <li><b>Rotaciones con pasturas:</b> las praderas devuelven materia orgánica y estructura.</li>
+          <li><b>Cultivos de cobertura</b> en los huecos del invierno.</li>
+          <li><b>Sistematización:</b> sembrar en contorno, fajas y desagües empastados en laderas.</li>
+          <li><b>Encalado</b> de suelos ácidos y fertilización según análisis (no a ojo).</li>
+          <li><b>Cuidar la carga animal</b> en superficiales y húmedos: el pisoteo compacta.</li>
+          <li><b>Retiro de riberas:</b> dejar vegetación junto a cursos de agua.</li>
+        </ul>
+        <h3>Señales de un suelo que sufre</h3>
+        <ul class="puntos" style="--fcolor:#A34F2E">
+          <li>Costras y "planchado" tras la lluvia; charcos que duran.</li>
+          <li>Surcos y cárcavas; raíces que doblan en un piso duro (piso de arado).</li>
+          <li>Materia orgánica en baja en los análisis; colores más claros que el monte vecino.</li>
+          <li>Manchones salinos o "blanqueales" que se agrandan.</li>
+        </ul>
+      </div>
+    </div>
+    <h2>Quién sirve para qué: la aptitud en una tabla</h2>
+    <table class="tbl" style="font-size:7.4pt">
+      <tr><th>Uso</th><th>Suelos que lo bancan mejor</th><th>Suelos que lo sufren</th></tr>
+      <tr><td><b>Agricultura de secano</b></td><td>Brunosoles éutricos profundos, Vertisoles (con manejo), Argisoles suaves</td><td>Litosoles, Arenosoles, halomórficos, Gleysoles</td></tr>
+      <tr><td><b>Arroz</b></td><td>Planosoles y Gleysoles de planicie (capa impermeable + agua cerca)</td><td>Arenosoles y basalto superficial</td></tr>
+      <tr><td><b>Pasturas sembradas / lechería</b></td><td>Brunosoles, Argisoles, Vertisoles</td><td>Acrisoles muy ácidos (exigen corrección), superficiales</td></tr>
+      <tr><td><b>Forestación</b></td><td>Acrisoles, Luvisoles y Arenosoles del NE y costa (prioridad forestal)</td><td>Vertisoles pesados, hidromórficos</td></tr>
+      <tr><td><b>Ganadería sobre campo natural</b></td><td>Todos — es el uso más universal; clave en Litosoles e hidromórficos</td><td>— (solo ajustar carga)</td></tr>
+      <tr><td><b>Horticultura</b></td><td>Brunosoles francos del sur, Fluvisoles con riego</td><td>Arcillosos pesados, anegables sin drenaje</td></tr>
+    </table>
+  </div>
+</section>
+
+<!-- ══════════════════ CAP 7 · DIAGNÓSTICO ══════════════════ -->
+<section class="page" id="cap7" data-cap="Cap. 7 · Diagnóstico">
+  <div class="pad">
+    <div class="caphead">
+      <div class="capnum">7</div>
+      <div>
+        <div class="kicker">Capítulo siete</div>
+        <h1 class="cap" style="margin-bottom:0">Diagnóstico: leer tu suelo</h1>
+      </div>
+    </div>
+    <p class="lede">No hace falta ser edafólogo para diagnosticar a grandes rasgos un suelo: alcanza con
+    una pala, los ojos y un laboratorio de confianza. El método oficial está en el <strong>Manual de
+    Descripción y Muestreo de Suelos y Análisis de Laboratorio</strong> del MGAP; esta página es la
+    versión de bolsillo.</p>
+    <div class="grid2">
+      <div>
+        <h2 style="margin-top:0">1 · La calicata: mirar el perfil</h2>
+        <ul class="puntos">
+          <li><b>Elegí un lugar representativo</b> del potrero (ni cañada ni lomo pelado) y cavá hasta ~1 m o hasta la roca.</li>
+          <li><b>Mirá las capas:</b> ¿dónde cambia el color, la textura, la dureza? Medí la profundidad de cada horizonte.</li>
+          <li><b>Color:</b> negro/pardo = humus; pálido = lavado; gris con motas naranjas = agua estancada; blanco en profundidad = carbonatos.</li>
+          <li><b>Textura al tacto</b> con la prueba del rollito (capítulo 1) horizonte por horizonte.</li>
+          <li><b>Raíces:</b> ¿hasta dónde llegan? ¿doblan de golpe? Ahí hay un piso denso.</li>
+          <li><b>Prueba del vinagre:</b> unas gotas sobre el terrón; si burbujea, hay carbonato de calcio (típico horizonte Cca del oeste).</li>
+          <li>Con perfil, región y esta guía, ubicá tu suelo en su ficha del capítulo 3.</li>
+        </ul>
+      </div>
+      <div>
+        <h2 style="margin-top:0">2 · El muestreo para análisis</h2>
+        <ul class="puntos">
+          <li><b>Recorrido en zigzag</b> por el potrero: 15–20 piques con pala o calador, siempre a la <b>misma profundidad (0–15 cm)</b>.</li>
+          <li><b>Evitá lo raro:</b> dormideros, taperas, hormigueros, bordes de alambrado y caminos.</li>
+          <li>Mezclá todo en un balde limpio y mandá <b>~500 g</b> al laboratorio, etiquetado (potrero, fecha, cultivo previsto).</li>
+          <li>Repetí cada <b>3–4 años</b>, en la misma época del año, para poder comparar.</li>
+        </ul>
+        <h2>3 · Qué pedir y qué te dice</h2>
+        <table class="tbl">
+          <tr><th>Análisis</th><th>Te dice</th></tr>
+          <tr><td><b>pH</b></td><td>Acidez: si hay que encalar o si hay sodio/carbonatos.</td></tr>
+          <tr><td><b>Materia orgánica</b></td><td>Salud general y reserva de nitrógeno.</td></tr>
+          <tr><td><b>Fósforo (Bray I o cítrico)</b></td><td>El nutriente más limitante del país; define la fertilización.</td></tr>
+          <tr><td><b>Potasio y bases (Ca, Mg, Na)</b></td><td>Estado de la "despensa"; el Na alto delata halomorfismo.</td></tr>
+          <tr><td><b>Aluminio (si pH &lt; 5,2)</b></td><td>Riesgo de toxicidad para cultivos sensibles.</td></tr>
+        </table>
+        <p class="small" style="margin-top:2mm">Los rangos orientativos están en la tabla del capítulo 1.
+        La interpretación final es trabajo del técnico asesor con el análisis en la mano.</p>
+      </div>
+    </div>
+    <div class="nota"><b>Herramientas online gratuitas:</b> visualizador CONEAT (índice y grupos por padrón),
+    Carta de Reconocimiento de Suelos 1:1.000.000 y cartas 1:40.000 disponibles en el geoportal del MGAP,
+    y fotos de perfiles reales en el Museo Virtual de Suelos de la Facultad de Agronomía.</div>
+  </div>
+</section>
+
+<!-- ══════════════════ GLOSARIO ══════════════════ -->
+<section class="page" id="glosario" data-cap="Glosario">
+  <div class="pad">
+    <div class="kicker">Referencia rápida</div>
+    <h1 class="cap" style="font-size:20pt">Glosario</h1>
+    <div class="glos">
+      <div class="g"><span class="gt">Aptitud de uso ·</span> <span class="gd">lo que un suelo puede producir de forma sostenida sin degradarse.</span></div>
+      <div class="g"><span class="gt">Bases ·</span> <span class="gd">cationes nutritivos: calcio, magnesio, potasio (y sodio, el problemático).</span></div>
+      <div class="g"><span class="gt">Bt (B textural) ·</span> <span class="gd">horizonte B enriquecido en arcilla lavada desde arriba.</span></div>
+      <div class="g"><span class="gt">Calicata ·</span> <span class="gd">pozo que expone el perfil del suelo para describirlo.</span></div>
+      <div class="g"><span class="gt">Campo natural ·</span> <span class="gd">pastizal nativo uruguayo; la vegetación que construyó estos suelos.</span></div>
+      <div class="g"><span class="gt">Carbonatos (Cca) ·</span> <span class="gd">acumulaciones blancas de carbonato de calcio en profundidad; burbujean con vinagre.</span></div>
+      <div class="g"><span class="gt">CIC ·</span> <span class="gd">capacidad de intercambio catiónico: tamaño de la "despensa" de nutrientes.</span></div>
+      <div class="g"><span class="gt">CONEAT ·</span> <span class="gd">índice nacional de productividad de la tierra (carne y lana; media = 100).</span></div>
+      <div class="g"><span class="gt">Contacto lítico ·</span> <span class="gd">la roca dura; si está a &lt;30 cm, el suelo es un Litosol.</span></div>
+      <div class="g"><span class="gt">Drenaje ·</span> <span class="gd">velocidad con la que el suelo evacúa el exceso de agua.</span></div>
+      <div class="g"><span class="gt">Edafología ·</span> <span class="gd">la ciencia que estudia los suelos.</span></div>
+      <div class="g"><span class="gt">Erosión ·</span> <span class="gd">pérdida de suelo por agua o viento; la hídrica es la que importa acá.</span></div>
+      <div class="g"><span class="gt">Fase ·</span> <span class="gd">detalle final del nombre de un suelo: superficial, pedregosa, erosionada…</span></div>
+      <div class="g"><span class="gt">Gley / gleyzación ·</span> <span class="gd">colores grises y motas por agua estancada; marca de hidromorfismo.</span></div>
+      <div class="g"><span class="gt">Horizonte ·</span> <span class="gd">cada capa del perfil (O, A, E, B, C, R).</span></div>
+      <div class="g"><span class="gt">Horizonte álbico ·</span> <span class="gd">capa lavada, pálida, casi sin arcilla ni nutrientes (la E del Planosol).</span></div>
+      <div class="g"><span class="gt">Horizonte melánico ·</span> <span class="gd">A negro, espeso y rico en bases: el sello de la pradera uruguaya.</span></div>
+      <div class="g"><span class="gt">Humus ·</span> <span class="gd">materia orgánica estabilizada; el pegamento fértil del suelo.</span></div>
+      <div class="g"><span class="gt">Lixiviación ·</span> <span class="gd">lavado de nutrientes y arcilla hacia abajo por el agua.</span></div>
+      <div class="g"><span class="gt">Material madre ·</span> <span class="gd">roca o sedimento del que se formó el suelo.</span></div>
+      <div class="g"><span class="gt">Montmorillonita / esmectita ·</span> <span class="gd">arcillas expansivas de los Vertisoles: se hinchan y agrietan.</span></div>
+      <div class="g"><span class="gt">Napa colgada ·</span> <span class="gd">agua detenida sobre un horizonte impermeable, típica del Planosol en invierno.</span></div>
+      <div class="g"><span class="gt">Padrón ·</span> <span class="gd">unidad catastral de un inmueble rural; la llave para consultar CONEAT.</span></div>
+      <div class="g"><span class="gt">Perfil ·</span> <span class="gd">el corte vertical del suelo, de la superficie a la roca.</span></div>
+      <div class="g"><span class="gt">pH ·</span> <span class="gd">medida de acidez/alcalinidad (7 = neutro).</span></div>
+      <div class="g"><span class="gt">Saturación de bases ·</span> <span class="gd">% de la CIC ocupado por nutrientes; define éutrico/subéutrico/dístrico.</span></div>
+      <div class="g"><span class="gt">Siembra directa ·</span> <span class="gd">sembrar sin arar, dejando el rastrojo: la práctica anti-erosión estrella.</span></div>
+      <div class="g"><span class="gt">Solum ·</span> <span class="gd">la parte "viva" del perfil: horizontes A + E + B.</span></div>
+      <div class="g"><span class="gt">Textura ·</span> <span class="gd">proporción de arena, limo y arcilla.</span></div>
+      <div class="g"><span class="gt">Tolerancia de erosión ·</span> <span class="gd">pérdida máxima admitida (~7 t/ha/año) para que el suelo no retroceda.</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════ FUENTES ══════════════════ -->
+<section class="page" id="fuentes" data-cap="Fuentes">
+  <div class="pad">
+    <div class="kicker">Para seguir leyendo</div>
+    <h1 class="cap" style="font-size:20pt">Fuentes consultadas</h1>
+    <p class="lede">Este manual es una obra de divulgación: resume y traduce fuentes oficiales y
+    académicas, que son la palabra autorizada ante cualquier diferencia.</p>
+    <h3>Clasificación y cartografía nacional</h3>
+    <ul class="puntos">
+      <li>Altamirano, A. <i>et al.</i> (1976). <b>Carta de Reconocimiento de Suelos del Uruguay, Tomo I: Clasificación de Suelos</b>. MGAP – Dirección de Suelos y Fertilizantes / Facultad de Agronomía. (Disponible en descargas.mgap.gub.uy)</li>
+      <li>Durán, A.; García Préchac, F. y colaboradores (2007–2014). Revisión de la clasificación uruguaya; ver <i>Agrociencia Uruguay</i> 18(2): "La clasificación uruguaya de suelos del 2007…" (scielo.edu.uy).</li>
+      <li>MGAP – DGRN. <b>Manual de Descripción y Muestreo de Suelos y Análisis de Laboratorio</b> (gub.uy).</li>
+      <li>MGAP. Carta de Reconocimiento de Suelos escala 1:1.000.000 y cartas 1:40.000 — geoportal y visualizadores en gub.uy.</li>
+      <li>Museo Virtual de Suelos, Facultad de Agronomía – Udelar (museovirtualdesuelos.net): fotos y descripciones de perfiles reales de cada gran grupo.</li>
+    </ul>
+    <h3>CONEAT y normativa</h3>
+    <ul class="puntos">
+      <li>Ley 13.695 (1968) — creación de CONEAT; grupos e índices de productividad en gub.uy/consulta-coneat.</li>
+      <li>Decreto-ley 15.239 (1981) de Conservación de Suelos y Aguas y decretos reglamentarios 333/004 y 405/008 (impo.com.uy).</li>
+      <li>Descripción de los grupos de suelos CONEAT (documento técnico de la Comisión, ed. digital).</li>
+      <li>FAO Uruguay (2019): "Salvar nuestros suelos" — los planes de uso uruguayos como ejemplo internacional (fao.org/uruguay).</li>
+    </ul>
+    <h3>Clasificaciones internacionales</h3>
+    <ul class="puntos">
+      <li>IUSS Working Group WRB (2022). <b>World Reference Base for Soil Resources, 4ª edición</b> — 32 grupos de referencia (wrb.isric.org; hay traducción oficial al español).</li>
+      <li>USDA – NRCS. <b>The Twelve Orders of Soil Taxonomy</b> y <i>Keys to Soil Taxonomy</i> (nrcs.usda.gov).</li>
+      <li>Clasificación hidrológica de los suelos del Uruguay (correlaciones Brunosol–Udoll, etc.; agris.fao.org).</li>
+    </ul>
+    <h3>Regiones y contexto</h3>
+    <ul class="puntos">
+      <li>Evia, G. y Brazeiro, A. <i>et al.</i> — Clasificación y delimitación de las eco-regiones del Uruguay (informe técnico; vidasilvestre.org.uy).</li>
+      <li>INIA / FUCREA — guías de interpretación de análisis de suelos (rangos orientativos del capítulo 1).</li>
+    </ul>
+    <hr class="sep">
+    <p class="small">Edición agosto 2026. Redacción, diseño e ilustraciones generadas para uso educativo
+    familiar; verificado contra las fuentes listadas a la fecha de edición. No sustituye el asesoramiento
+    agronómico profesional. Compuesto en Fraunces, Source Serif 4 e Inter; diagramas en SVG.</p>
+  </div>
+</section>
+<style>
+.page{page-break-after:always !important}
+#fuentes{page-break-after:auto !important}
+</style>
+<script>
+/* ================= FICHAS: datos ================= */
+const FICHAS = [
+{n:'01',nombre:'Brunosol',color:'#5B3A24',ety:'De brun, "pardo": el suelo pardo oscuro de la pradera.',
+ apodo:'El suelo insignia del Uruguay',orden:'Orden melánico',
+ perfil:[['A','0–30 cm','#33251A','om'],['Bt','30–70 cm','#5B3A24','clay'],['Cca','70–110 cm','#8A6B43','carb']],
+ facts:[['Subdivisiones','Éutrico · Subéutrico · Dístrico, cada uno Háplico · Típico · Lúvico'],
+  ['WRB','Phaeozems'],['USDA','Mollisols (Argiudolls, Hapludolls)'],
+  ['Regiones','Todo el país: basalto profundo, cristalino, litoral oeste, sur'],
+  ['Extensión','Muy extendido — el más común del país'],['Fertilidad','Alta a media'],['Drenaje','Bueno a moderado']],
+ como:['Perfil clásico <b>A–Bt–Cca</b>: horizonte superficial melánico (negro a pardo muy oscuro, 20–40 cm, 3–6 % de materia orgánica, estructura granular), un B textural pardo con más arcilla, y abajo el material madre — que en el oeste trae carbonatos (Cca). Texturas medias, francas a franco arcillosas, con menos de 35 % de arcilla en al menos un horizonte: si superara ese umbral en todo el perfil, sería un Vertisol.',
+  'Bien provisto de bases: los <b>Éutricos</b> rebosan calcio; los <b>Subéutricos</b> van a media tabla; los <b>Dístricos</b> son la versión empobrecida y escasa. Sin Bt es <b>Háplico</b>; con Bt moderado, <b>Típico</b>; con Bt potente, <b>Lúvico</b>.'],
+ donde:'En todas las regiones: sobre el basalto profundo del norte, los granitos del cristalino, los limos calcáreos del litoral oeste (donde viven sus mejores versiones éutricas) y los limos del sur. Prefiere laderas medias y llanuras onduladas, dejándole los extremos a Litosoles (arriba) y Gleysoles (abajo).',
+ sirve:'Es el todoterreno nacional: soja, trigo, cebada y maíz en el litoral; pasturas, lechería y horticultura en el sur y el cristalino; cría e invernada en el resto. Su combinación de fertilidad natural, textura amable y buen drenaje lo vuelve <b>el</b> suelo agrícola del país.',
+ lim:['Erosión hídrica en laderas cultivadas: su talón de Aquiles histórico',
+  'Compactación por tránsito y pisoteo en húmedo',
+  'Pérdida de materia orgánica con agricultura continua sin fase de pasturas',
+  'Fósforo naturalmente escaso (deficiencia crónica nacional): fertilizar según análisis'],
+ dato:'En la Soil Taxonomy los Brunosoles son Mollisols: el mismo club selecto de las praderas pampeanas, el Corn Belt norteamericano y las estepas negras de Ucrania.'},
+
+{n:'02',nombre:'Vertisol',color:'#33302B',ety:'Del latín verto, "dar vuelta": un suelo que se mezcla solo.',
+ apodo:'El negro arcilloso que se agrieta',orden:'Orden melánico',
+ perfil:[['A','0–50 cm','#26221D','cracks'],['AC','50–90 cm','#3A342C','clay'],['Cca','90–120 cm','#7A6A4C','carb']],
+ facts:[['Subdivisiones','Háplico · Rúptico'],['WRB','Vertisols'],['USDA','Vertisols (Uderts)'],
+  ['Regiones','Basalto profundo del norte y litoral; limos calcáreos del oeste'],
+  ['Extensión','Común en el norte y oeste'],['Fertilidad','Muy alta (química)'],['Drenaje','Lento a moderado']],
+ como:['Negro de punta a punta: horizonte melánico potente y <b>más de 35 % de arcilla en todo el perfil</b> (la revisión de 2007 admite 30 %), sin contacto con la roca en los primeros 50 cm. Sus arcillas expansivas — esmectitas como la montmorillonita — se hinchan mojadas y se contraen secas: el suelo se <b>agrieta</b> en verano, traga material superficial y se auto-mezcla, borrando cualquier B textural (por eso el típico es <b>Háplico</b>; el <b>Rúptico</b> es la variante con perfil "interrumpido").',
+  'Química de lujo: CIC muy alta, saturación de bases cercana al 80 % dominada por calcio, pH neutro a ligeramente alcalino y carbonatos frecuentes en profundidad.'],
+ donde:'Basalto profundo del norte y el litoral (zonas de Itapebí, Young) y limos calcáreos del oeste sobre la Formación Fray Bentos. Comparte paisaje con los Brunosoles Éutricos, quedándose con los bajos y las laderas suaves de texturas más pesadas.',
+ sirve:'Potencia química de primera línea: trigo, cebada, soja y sorgo de techo alto, y praderas de alfalfa y leguminosas que en pocos suelos rinden mejor. En ganadería, campos de engorde de los buenos.',
+ lim:['Ventana de laboreo cortísima: barro pegajoso al mojarse, cemento agrietado al secarse',
+  'Las grietas rompen raíces — y de paso castigan caminos, pozos y construcciones',
+  'Drenaje interno lento: encharcamientos en años llovedores',
+  'Erosionable en pendiente si queda desnudo: mejor siembra directa'],
+ dato:'Una grieta de verano puede superar el metro de profundidad. Al cerrarse con las lluvias entierra lo que cayó adentro: el suelo literalmente se da vuelta solo — de ahí su nombre.'},
+
+{n:'03',nombre:'Argisol',color:'#8A6B43',ety:'De argilla, "arcilla": la que se acumula en su subsuelo.',
+ apodo:'El pariente discreto y lavado',orden:'Orden saturado lixiviado',
+ perfil:[['A','0–25 cm','#4A3B2C','om'],['Bt','25–75 cm','#6E4E30','clay'],['C','75–110 cm','#8A6B43','']],
+ facts:[['Subdivisiones','Éutrico · Subéutrico · Dístrico'],['WRB','Phaeozems lúvicos / Planosols'],
+  ['USDA','Mollisols (Argiudolls, Argialbolls)'],
+  ['Regiones','Lomadas y terrazas del este y noreste (unidades San Carlos, Salto, Algorta)'],
+  ['Extensión','Común'],['Fertilidad','Media'],['Drenaje','Moderado a imperfecto']],
+ como:['Un suelo de pradera <b>lavado "a medias"</b>: el agua le fue llevando arcilla del horizonte superficial hacia abajo, formando un Bt más pesado — pero la transición es gradual y <b>no existe la capa blanqueada continua</b> que define al Planosol. El A queda pardo grisáceo, de texturas medias y materia orgánica moderada.',
+  'Pertenece al orden saturado lixiviado: perdió parte de sus bases pero conserva bastante — fertilidad de media tabla, con versiones éutricas, subéutricas y dístricas.'],
+ donde:'Lomadas suaves, colinas bajas y terrazas altas del este y el noreste; es dominante en las unidades San Carlos, Salto y Algorta de la Carta de Reconocimiento. Suele ocupar la franja intermedia del paisaje, entre los suelos melánicos de arriba y los Planosoles del llano.',
+ sirve:'Ganadería sobre campo natural y pasturas sembradas; agricultura de secano moderada con buen manejo; en el este integra la rotación arrocera cuando el relieve acompaña.',
+ lim:['El Bt frena el agua: drenaje moderado a imperfecto, con excesos invernales',
+  'Menos materia orgánica y fertilidad que sus vecinos melánicos',
+  'Propenso a encostramiento y compactación superficial',
+  'El A lavado se erosiona con facilidad si se sobrelaborea'],
+ dato:'Es el eslabón perdido entre Brunosol y Planosol: el mismo ADN de pradera, cada vez más lavado a medida que el paisaje se aplana y el agua se demora.'},
+
+{n:'04',nombre:'Planosol',color:'#8A7B5E',ety:'De planus, "plano": el suelo de las planicies.',
+ apodo:'La cancha del arroz uruguayo',orden:'Orden saturado lixiviado',
+ perfil:[['A','0–25 cm','#4A4234','om'],['E','25–33 cm','#C3B79D',''],['Bt','33–85 cm','#5E4630','clay'],['C','85–110 cm','#7E6A4E','']],
+ facts:[['Subdivisiones','Éutrico · Subéutrico · Dístrico (Melánicos u Ócricos)'],['WRB','Planosols'],
+  ['USDA','Alfisols (Albaqualfs) / Argialbolls'],
+  ['Regiones','Planicies del este (Laguna Merín); llanuras del centro y noreste'],
+  ['Extensión','Común en el este'],['Fertilidad','Baja a media'],['Drenaje','Imperfecto a pobre']],
+ como:['El "doble piso" perfecto: un A de texturas medias, debajo una capa lavada casi blanca — el <b>horizonte E álbico</b>, de 3 cm o más, continuo — y de golpe, con <b>transición abrupta</b>, un Bt arcilloso, denso y casi impermeable.',
+  'Esa arquitectura define su vida: en invierno el agua queda <b>colgada</b> sobre el piso arcilloso (napa colgada) y el perfil se satura; en verano, el horizonte superficial — el único que exploran las raíces — se seca rápido. Saturación de bases media; materia orgánica moderada.'],
+ donde:'Relieve plano o casi plano, donde el agua no tiene apuro: las planicies del este en la cuenca de la Laguna Merín (su capital), y llanuras altas del centro y el noreste. Convive con Gleysoles (más bajos) y Argisoles (más altos).',
+ sirve:'El suelo <b>arrocero</b> por excelencia: su piso impermeable retiene la lámina de riego gastando poca agua, y la rotación arroz–pasturas del este es marca país. Fuera del arroz: ganadería de cría y pasturas; la agricultura de secano la pasa mal.',
+ lim:['Lo peor de los dos mundos para secano: anegado en invierno, seco en verano',
+  'El Bt denso confina las raíces al horizonte superficial',
+  'Estructura frágil: se "plancha" y compacta con facilidad',
+  'El drenaje artificial es caro y de resultado parcial'],
+ dato:'Uruguay está entre los principales exportadores mundiales de arroz, y ese arroz crece mayormente sobre Planosoles y sus vecinos hidromórficos: un suelo problemático para el maíz, perfecto para una lámina de agua.'},
+
+{n:'05',nombre:'Luvisol',color:'#A66A33',ety:'De luere, "lavar": lavado hasta perder buena parte de sus bases.',
+ apodo:'El pardo de las areniscas',orden:'Orden desaturado lixiviado',
+ perfil:[['A','0–30 cm','#6B5236','sand'],['Bt','30–85 cm','#A66A33','clay'],['C','85–120 cm','#C08A4E','sand']],
+ facts:[['Subdivisiones','Ócricos · Úmbricos · Melánicos'],['WRB','Luvisols / Lixisols (¡falso amigo!)'],
+  ['USDA','Alfisols (Hapludalfs, Paleudalfs)'],
+  ['Regiones','Areniscas del noreste: asociaciones Tacuarembó y Rivera'],
+  ['Extensión','Localizado (noreste)'],['Fertilidad','Baja a media'],['Drenaje','Bueno']],
+ como:['El suelo pardo rojizo de las areniscas: un A arenoso franco, de claro (ócrico) a oscuro pero ácido (úmbrico), sobre un <b>Bt más arcilloso</b> rojizo-amarillento heredado de la arenisca alterada.',
+  'Está <b>desaturado</b>: perdió buena parte de sus bases (aunque el Bt conserva más del 35 %) y es moderadamente ácido, con aluminio presente sin dominar (5–35 % de saturación). Materia orgánica modesta: 1,5–2 % es lo normal sobre arenisca.'],
+ donde:'La cuenca de areniscas del noreste — Tacuarembó y Rivera sobre todo — en colinas y lomadas suaves de arenisca alterada o redepositada, casi siempre de la mano de Acrisoles (más viejos y ácidos) y Arenosoles (más arenosos).',
+ sirve:'Vocación <b>forestal</b> (pinos y eucaliptos) y ganadera sobre campo natural; con fósforo y algo de cal, pasturas mejoradas dignas; agricultura puntual en las chacras areneras tradicionales del norte.',
+ lim:['Fósforo y potasio naturalmente escasos',
+  'Acidez moderada: las leguminosas exigentes piden encalado',
+  'Texturas arenosas: poca agua guardada y erosión fácil en pendiente',
+  'La materia orgánica se "quema" rápido si se lo labra seguido'],
+ dato:'Ojo con el nombre: el Luvisol uruguayo es más ácido y pobre que el "Luvisol" de la WRB. En mapas internacionales muchos aparecen como Lixisols o Acrisols — el falso amigo clásico (capítulo 4).'},
+
+{n:'06',nombre:'Acrisol',color:'#B0532F',ety:'De acris, "ácido": el nombre no miente.',
+ apodo:'El ácido con vocación de bosque',orden:'Orden desaturado lixiviado',
+ perfil:[['A','0–25 cm','#7A4A33','sand'],['Bt','25–95 cm','#B0532F','clay'],['C','95–120 cm','#C4703F','sand']],
+ facts:[['Subdivisiones','Ócricos · Úmbricos'],['WRB','Acrisols'],['USDA','Ultisols (Hapludults, Paleudults)'],
+  ['Regiones','Noreste: asociación Rivera; acompaña en Tacuarembó'],
+  ['Extensión','Localizado (noreste)'],['Fertilidad','Baja'],['Drenaje','Bueno']],
+ como:['El más ácido y lavado de la familia: perfil A–Bt profundo sobre areniscas, de colores rojizos a amarillentos, con <b>saturación de bases menor a 35 %</b> y <b>aluminio intercambiable alto</b> — su saturación suele superar el 35 %, nivel tóxico para cultivos sensibles.',
+  'Arcillas de baja actividad, CIC modesta, materia orgánica escasa: una despensa chica y además medio vacía. Es, en términos químicos, el polo opuesto del Vertisol.'],
+ donde:'El noreste arenisco: la asociación Rivera es su capital, y acompaña a los Luvisoles en la de Tacuarembó. Ocupa las colinas más viejas y estables, donde el lavado tuvo más tiempo para hacer su trabajo.',
+ sirve:'Prioridad <b>forestal</b> declarada: pinos y eucaliptos prosperan donde los cultivos sufren, y sobre estos suelos se asienta buena parte del polo forestal-celulósico del norte. Ganadería extensiva de baja carga; con cal y fertilización generosa, algo de forraje.',
+ lim:['Acidez fuerte + aluminio: alfalfa o cebada, ni intentarlo sin corrección',
+  'Muy pobre en fósforo y en bases',
+  'Materia orgánica escasa y frágil: se degrada rápido si se lo cultiva',
+  'Corregirlo cuesta más que en cualquier otro suelo del país'],
+ dato:'Debajo de estas areniscas corre el acuífero Guaraní, una de las mayores reservas de agua dulce del planeta — motivo extra para cuidar lo que se hace en superficie.'},
+
+{n:'07',nombre:'Litosol',color:'#7E7468',ety:'De lithos, "piedra": suelo con la roca a un palmo.',
+ apodo:'El delgado del basalto y las sierras',orden:'Orden poco desarrollado',
+ perfil:[['A','0–20 cm','#3A2C1E','om'],['R','20–120 cm','#6E655A','rock']],
+ facts:[['Subdivisiones','Éutricos · Subéutricos · Dístricos'],['WRB','Leptosols'],
+  ['USDA','Entisols líticos (Udorthents) / Mollisols líticos'],
+  ['Regiones','Basalto superficial (Artigas–Salto–Paysandú); todas las sierras'],
+  ['Extensión','Muy extendido'],['Fertilidad','Variable; alta pero sin volumen'],['Drenaje','Excesivo']],
+ como:['Un solo horizonte A apoyado directamente sobre la roca: el <b>contacto lítico está a 30 cm o menos</b> — y en los basaltos superficiales del norte, muchas veces a 5–10 cm. Ese A puede ser oscuro, melánico y químicamente rico (Litosoles éutricos sobre basalto), pero no hay más suelo que eso.',
+  'Pedregosidad y afloramientos rocosos son parte del paisaje; la reserva de agua útil es mínima: el suelo entero se moja — y se seca — en días.'],
+ donde:'La estrella de la <b>cuesta basáltica superficial</b> (Artigas, Salto, norte de Paysandú y la Cuchilla de Haedo) — la región de suelos más extensa del país, cerca de un cuarto del territorio — y de todas las sierras: del Este, del cristalino, Sierra de Ánimas.',
+ sirve:'Ganadería extensiva sobre campo natural: es el hogar histórico de la <b>lana fina</b> uruguaya (Merino del basalto). No arable. En sierras, además: nacientes de agua, refugio de fauna y paisaje.',
+ lim:['Sequías "flash": sin profundidad no hay reserva — el campo se quema en semanas',
+  'Imposible de arar; la piedra castiga máquinas y alambrados',
+  'El sobrepastoreo degrada rápido un tapiz que se recupera lento',
+  'Agua para el ganado escasa en verano: clave planificar aguadas'],
+ dato:'En plena seca, un Litosol y un Vertisol profundo pueden estar a 200 metros uno del otro: uno amarillo quemado, el otro todavía verde. En el basalto, la profundidad lo es todo.'},
+
+{n:'08',nombre:'Inceptisol',color:'#6E5B3F',ety:'De inceptum, "comienzo": un suelo que recién arranca.',
+ apodo:'El joven de las serranías',orden:'Orden poco desarrollado',
+ perfil:[['A','0–25 cm','#4A3A28','om'],['Bw','25–55 cm','#7A5C3A',''],['C/R','55–110 cm','#8B8578','rock']],
+ facts:[['Subdivisiones','Ócricos · Úmbricos · Melánicos'],['WRB','Cambisols / Regosols'],
+  ['USDA','Inceptisols (Eutrudepts, Dystrudepts)'],
+  ['Regiones','Serranías: unidades Yí, Sierra de Ánimas, Constitución'],
+  ['Extensión','Localizado (sierras y laderas)'],['Fertilidad','Variable'],['Drenaje','Bueno a excesivo']],
+ como:['Un suelo "a mitad de camino": tiene más desarrollo que un Litosol pero todavía ningún horizonte contundente — a lo sumo un <b>B incipiente</b> (cámbico, Bw) donde el color y la estructura apenas empiezan a diferenciarse.',
+  'Perfiles A–(Bw)–C muy variables según la roca y la pendiente: los hay claros y oscuros, ricos y pobres, profundos y esqueléticos — la juventud no define carácter.'],
+ donde:'Serranías y laderas fuertes, casi siempre entreverado con Litosoles y afloramientos: es dominante en las unidades Yí, Sierra de Ánimas y Constitución de la Carta de Reconocimiento.',
+ sirve:'Pastoril serrano sobre campo natural; forestación en algunos paisajes; y un rol silencioso pero clave: <b>proteger cuencas</b> — muchas nacientes de arroyos arrancan en estos suelos.',
+ lim:['Pendiente y pedregosidad: mecanización casi imposible',
+  'Espesor y calidad cambian metro a metro',
+  'Si pierde el tapiz vegetal, la erosión es inmediata',
+  'Fertilidad irregular, herencia directa de la roca local'],
+ dato:'El nombre lo tomó la clasificación uruguaya directamente de la Soil Taxonomy — el único gran grupo criollo con nombre 100 % yanqui.'},
+
+{n:'09',nombre:'Arenosol',color:'#C9A85C',ety:'De arena, sin vueltas.',
+ apodo:'La arena que camina',orden:'Orden poco desarrollado',
+ perfil:[['A','0–20 cm','#B99C68','sand'],['C','20–120 cm','#D8BE8A','sand']],
+ facts:[['Subdivisiones','Ócricos'],['WRB','Arenosols'],['USDA','Entisols (Udipsamments)'],
+  ['Regiones','Costas del Río de la Plata y el Atlántico; arenas del noreste'],
+  ['Extensión','Localizado'],['Fertilidad','Muy baja'],['Drenaje','Excesivo']],
+ como:['Arena y más arena: textura arenosa o arenoso franca <b>hasta 120 cm o más</b> (o más de 50 cm sobre un suelo enterrado o la roca), sin ningún horizonte diagnóstico. Granos sueltos, sin estructura.',
+  'Su química es un colador: CIC bajísima, casi nada de materia orgánica, retención de agua mínima. Lo que llueve, drena; lo que se fertiliza, se lava.'],
+ donde:'Cordones de dunas de las costas del Río de la Plata y el océano Atlántico (de Canelones a Rocha), arenas fluviales puntuales de ríos del este y noreste, y manchones areniscos del norte.',
+ sirve:'Forestación — los pinos y acacias que fijaron las dunas costeras hace un siglo —, horticultura puntual con riego y aporte constante de materia orgánica, y el uso recreativo/urbano de la costa, con el cuidado que la fragilidad exige.',
+ lim:['Sed y hambre permanentes: no guarda ni agua ni nutrientes',
+  'Deflación: si pierde cobertura, el viento se la lleva',
+  'Todo lo aplicado percola: riesgo directo para las napas',
+  'Fertilidad natural bajísima; la MO es oro y cuesta acumularla'],
+ dato:'Los pinares "naturales" de la costa uruguaya no son naturales: se plantaron a propósito desde principios del siglo XX para frenar estas arenas que avanzaban sobre pueblos y caminos.'},
+
+{n:'10',nombre:'Fluvisol',color:'#6B5B45',ety:'De fluvius, "río": hecho de crecidas.',
+ apodo:'El hijo de las crecidas',orden:'Orden poco desarrollado',
+ perfil:[['A','0–20 cm','#4E4030','om'],['2C','20–60 cm','#8A7A5E','strat'],['3C','60–120 cm','#A8946C','strat']],
+ facts:[['Subdivisiones','(Según estratos y drenaje)'],['WRB','Fluvisols'],['USDA','Entisols (Fluvents)'],
+  ['Regiones','Planicies de los ríos Uruguay, Negro, Yí, Cebollatí…'],
+  ['Extensión','Raro a escala país; frecuente junto a ríos'],['Fertilidad','Variable, a menudo buena'],['Drenaje','Imperfecto']],
+ como:['No tiene horizontes genéticos: tiene <b>capas</b>. Cada inundación dejó su estrato — arena fina acá, limo allá — y el perfil es esa pila de sedimentos jóvenes (estratificación), apenas retocada por la acumulación de materia orgánica en superficie.',
+  'Suelen ser profundos y de fertilidad razonable: el río renueva nutrientes con cada crecida. Pero la napa anda cerca y el conjunto es tan variable como el humor del río que lo hizo.'],
+ donde:'Planicies y terrazas bajas de ríos y arroyos grandes — Uruguay, Negro, Yí, Cebollatí, Tacuarembó — bajo monte ribereño (galería) o pradera húmeda. Poco frecuentes medidos a escala país, omnipresentes si andás cerca del agua.',
+ sirve:'Pastoreo estival de calidad ("los bajos aguantan el verano"), monte nativo protector, salicáceas (álamos y sauces), y horticultura en terrazas con riego donde la crecida no llega seguido.',
+ lim:['Inundables: cualquier inversión puede irse río abajo',
+  'Napa cerca: raíces profundas y maquinaria, complicadas',
+  'Variabilidad total, capa a capa y metro a metro',
+  'Buena parte integra zonas de retiro ribereño con restricciones de uso'],
+ dato:'Los antiguos egipcios construyeron una civilización sobre Fluvisoles del Nilo: cada crecida era el abono del año. Acá, más modestos, alimentan el monte ribereño y el pastoreo de verano.'},
+
+{n:'11',nombre:'Gleysol',color:'#5E7570',ety:'Del ruso gley, "barro": el color del hierro sin aire.',
+ apodo:'El gris que vive con la napa',orden:'Orden hidromórfico',
+ perfil:[['A','0–25 cm','#3E3A32','om'],['Bg','25–70 cm','#7C8880','mottle'],['Cg','70–110 cm','#8E9A94','mottle']],
+ facts:[['Subdivisiones','Háplicos · Lúvicos (Melánicos u Ócricos)'],['WRB','Gleysols'],
+  ['USDA','Grupos "ácuicos": Endoaquolls, Epiaqualfs…'],
+  ['Regiones','Depresiones y planicies bajas de todo el país; el este sobre todo'],
+  ['Extensión','Común en posiciones bajas'],['Fertilidad','Media'],['Drenaje','Pobre a muy pobre']],
+ como:['El suelo con la napa a flor: saturado buena parte del año, desarrolla los colores de la <b>gleyzación</b> — matrices grises verdosas con motas naranjas — porque el hierro, sin oxígeno, se reduce, se mueve y se re-oxida solo en los poros con aire.',
+  'Arriba suele tener un A oscuro y bien provisto (los años húmedos conservan materia orgánica); abajo, horizontes grises masivos que cuentan dónde vive el agua.'],
+ donde:'Depresiones, bordes de bañado y planicies bajas de todo el país; en la cuenca de la Laguna Merín forma equipo con Planosoles y Argisoles. La regla es simple: donde el agua se junta, hay un Gleysol esperando.',
+ sirve:'Ganadería de verano — sus pasturas aguantan cuando lo alto se seca —, arroz en el este, y un servicio cada vez más valorado: <b>regular el agua</b> del paisaje y sostener biodiversidad de humedal.',
+ lim:['Raíces sin aire buena parte del año: pocos cultivos lo toleran',
+  'Piso débil en húmedo: pisoteo y maquinaria lo destrozan',
+  'Drenarlo es caro, muchas veces ilegal (humedales) y de resultado dudoso',
+  'El frío se asienta en los bajos: heladas más duras y tardías'],
+ dato:'Las motas naranjas son literalmente óxido de hierro: el perfil de un Gleysol es un mapa de por dónde respiró — y por dónde se ahogó — el suelo.'},
+
+{n:'12',nombre:'Histosol',color:'#3C2F26',ety:'De histos, "tejido": tejido vegetal sin descomponer.',
+ apodo:'La turba de los bañados',orden:'Orden hidromórfico',
+ perfil:[['H1','0–40 cm','#2A211A','org'],['H2','40–80 cm','#3C2F26','org'],['Cg','80–110 cm','#7C8880','mottle']],
+ facts:[['Subdivisiones','(Según el material orgánico)'],['WRB','Histosols'],['USDA','Histosols'],
+  ['Regiones','Bañados de Santa Teresa y de la Angostura (Rocha); lagunas del este'],
+  ['Extensión','Raro'],['Fertilidad','No aplica (suelo orgánico)'],['Drenaje','Muy pobre (saturado)']],
+ como:['No es un suelo mineral: es <b>materia orgánica acumulada</b>. Bajo agua permanente, los restos vegetales no terminan de descomponerse y forman un <b>horizonte hístico</b> — turba — de 30 cm como mínimo y hasta varios metros.',
+  'Esponjoso, oscuro, saturado y liviano; ácido o casi neutro según el agua que lo alimenta. Debajo, cuando aparece, hay un piso mineral gleyzado.'],
+ donde:'Rarísimo y puntual: los bañados de Santa Teresa y de la Angostura, en Rocha, y bordes de lagunas costeras del este concentran casi todos los del país.',
+ sirve:'Conservación, sin vueltas: integran los Bañados del Este — Reserva de Biosfera y humedales de importancia internacional (Ramsar) —, regulan el agua de toda la cuenca y guardan carbono acumulado durante milenios. Producción directa: prácticamente ninguna.',
+ lim:['Drenado se oxida, se hunde (subsidencia) y hasta puede arder',
+  'Sin capacidad portante: no sostiene ni ganado ni máquinas',
+  'Frágil al extremo e irrecuperable a escala humana',
+  'Protegido: su drenaje está fuera de discusión legal'],
+ dato:'La turba es el archivo climático del este: el polen atrapado capa a capa cuenta qué vegetación hubo hace miles de años — un libro de historia escrito en materia orgánica.'},
+
+{n:'13',nombre:'Halomórficos',color:'#7C8577',ety:'De hals, "sal": Solonetz, Solonetz solodizado y Solod.',
+ apodo:'Los del sodio (blanqueales)',orden:'Orden halomórfico',
+ perfil:[['A','0–15 cm','#55483A','om'],['E','15–22 cm','#BCB09A',''],['Btn','22–75 cm','#6B5B4A','col'],['Cz','75–110 cm','#8A7E6A','carb']],
+ facts:[['Grandes grupos','Solonetz · Solonetz solodizado · Solod'],['WRB','Solonetz'],
+  ['USDA','Alfisols nátricos (Natraqualfs, Natrudalfs)'],
+  ['Regiones','Manchones en planicies bajas del oeste, sur y este'],
+  ['Extensión','Raro y localizado'],['Fertilidad','Muy baja (bloqueada)'],['Drenaje','Muy pobre']],
+ como:['La familia del <b>sodio</b>: con más de 15 % del complejo de intercambio ocupado por Na, las arcillas se dispersan, la estructura colapsa y el pH sube a 7,5 o más. El <b>Solonetz</b> luce un Bt nátrico columnar — columnas con techo redondeado — denso y casi impermeable.',
+  'El <b>Solonetz solodizado</b> y el <b>Solod</b> son etapas de lavado del sodio: aparece una capa blanqueada (E) cada vez más gruesa sobre el B, sin que la física mejore gran cosa.'],
+ donde:'Manchones — los "blanqueales" — en planicies bajas del litoral oeste, el sur y los bordes de bañado del este: la herencia visible de antiguas ingresiones marinas que dejaron su sal. Nunca dominan un paisaje entero; siempre emboscados en los bajos.',
+ sirve:'Muy poco: ganadería extensiva de carga mínima sobre vegetación tolerante (el rastrero "pelo de chancho"). La recuperación — yeso, drenaje, materia orgánica — es lenta y cara: fuera de usos muy intensivos, no paga.',
+ lim:['Física desastrosa: barro disperso mojado, ladrillo agrietado seco',
+  'El pH alto bloquea fósforo y micronutrientes',
+  'Sed osmótica: las plantas sufren aun con agua a la vista',
+  'Riego con agua dudosa lo empeora — y puede "contagiar" suelos vecinos'],
+ dato:'Los peladales blancos que se ven en algunos bajos no están sobrepastoreados: están envenenados de sodio desde que el mar anduvo por ahí, hace miles de años.'}
+];
+
+/* ================= FICHAS: render ================= */
+function pat(t,x,y,w,h,i){ // texturas del perfil
+  let s='',k=0,r;
+  const rnd=(a,b)=>{k++;const v=Math.abs(Math.sin(i*37.7+k*13.13))%1;return a+v*(b-a)};
+  if(t==='om'){for(let j=0;j<Math.max(3,w*h/140);j++)s+=`<circle cx="${rnd(x+2,x+w-2).toFixed(1)}" cy="${rnd(y+2,y+h-2).toFixed(1)}" r="${rnd(.5,.9).toFixed(2)}" fill="rgba(0,0,0,.45)"/>`}
+  if(t==='sand'){for(let j=0;j<w*h/60;j++)s+=`<circle cx="${rnd(x+1.5,x+w-1.5).toFixed(1)}" cy="${rnd(y+1.5,y+h-1.5).toFixed(1)}" r=".45" fill="rgba(255,255,255,.5)"/>`}
+  if(t==='carb'){for(let j=0;j<Math.max(4,w*h/220);j++)s+=`<circle cx="${rnd(x+3,x+w-3).toFixed(1)}" cy="${rnd(y+3,y+h-3).toFixed(1)}" r="${rnd(.9,1.5).toFixed(2)}" fill="#EFE6CE"/>`}
+  if(t==='clay'){for(let j=0;j<Math.max(4,w*h/200);j++){const px=rnd(x+3,x+w-9),py=rnd(y+3,y+h-3);s+=`<path d="M${px.toFixed(1)},${py.toFixed(1)} l6,${rnd(-2,2).toFixed(1)}" stroke="rgba(0,0,0,.35)" stroke-width=".55" fill="none"/>`}}
+  if(t==='rock'){for(let yy=y+6;yy<y+h;yy+=8)s+=`<path d="M${x},${yy} L${x+w},${yy}" stroke="rgba(0,0,0,.3)" stroke-width=".6"/>`;
+    for(let j=0;j<w/9;j++){const px=x+4+j*9;s+=`<path d="M${px},${y+(j%2?6:14)-6+6} l-2.5,7" stroke="rgba(0,0,0,.3)" stroke-width=".6"/>`}}
+  if(t==='strat'){for(let yy=y+4;yy<y+h-2;yy+=5.5)s+=`<path d="M${x+1},${yy} L${x+w-1},${yy}" stroke="rgba(255,255,255,.35)" stroke-width="${(yy/5)%2<1?1.1:.5}"/>`}
+  if(t==='mottle'){for(let j=0;j<Math.max(5,w*h/150);j++)s+=`<ellipse cx="${rnd(x+3,x+w-3).toFixed(1)}" cy="${rnd(y+3,y+h-3).toFixed(1)}" rx="${rnd(1,1.9).toFixed(1)}" ry="${rnd(.7,1.2).toFixed(1)}" fill="rgba(198,110,50,.55)"/>`}
+  if(t==='org'){for(let j=0;j<Math.max(5,w*h/130);j++){const px=rnd(x+2,x+w-8),py=rnd(y+2,y+h-2);s+=`<path d="M${px.toFixed(1)},${py.toFixed(1)} q2,-1.4 4.5,0" stroke="rgba(255,255,255,.22)" stroke-width=".6" fill="none"/>`}}
+  if(t==='col'){for(let px=x+7;px<x+w-3;px+=9){s+=`<path d="M${px},${y+4} L${px},${y+h-2}" stroke="rgba(0,0,0,.4)" stroke-width=".8"/>`;s+=`<path d="M${px-4.5},${y+4} q4.5,-3.5 9,0" stroke="rgba(0,0,0,.35)" stroke-width=".6" fill="none"/>`}}
+  if(t==='cracks'){for(let px=x+8;px<x+w-4;px+=11){r=rnd(-2,2);const cx=px+r;
+    s+=`<path d="M${(cx-2.3).toFixed(1)},${y} L${cx.toFixed(1)},${(y+h*.8).toFixed(1)} L${(cx+2.3).toFixed(1)},${y} Z" fill="#0B0906" stroke="rgba(248,244,234,.3)" stroke-width=".35"/>`}}
+  return s;
+}
+function perfilSVG(f,idx){
+  const X=6,W=56,TOP=8,H=132;
+  const n=f.perfil.length;
+  let y=TOP,s='',lab='';
+  const hs=f.perfil.map((L,j)=>j===n-1?0:parseFloat(L[1].split('–')[1]));
+  // alturas proporcionales sencillas: usar peso igual ajustado por rango declarado
+  const tot=f.perfil.reduce((a,L)=>{const m=L[1].match(/(\d+)[^\d]+(\d+)/);return a+(m?(+m[2]-+m[1]):30)},0);
+  f.perfil.forEach((L,j)=>{
+    const m=L[1].match(/(\d+)[^\d]+(\d+)/);
+    const hh=Math.max(14,(m?(+m[2]-+m[1]):30)/tot*H);
+    s+=`<rect x="${X}" y="${y.toFixed(1)}" width="${W}" height="${hh.toFixed(1)}" fill="${L[2]}"/>`;
+    s+=pat(L[3],X,y,W,hh,idx*7+j);
+    if(j)s+=`<path d="M${X},${y.toFixed(1)} L${X+W},${y.toFixed(1)}" stroke="rgba(253,251,245,.55)" stroke-width=".5"/>`;
+    lab+=`<text x="${X+W+4}" y="${(y+hh/2+1.5).toFixed(1)}" font-family="Inter" font-size="6.4" font-weight="700" fill="#452A17">${L[0]}</text>`;
+    lab+=`<text x="${X+W+4}" y="${(y+hh/2+7).toFixed(1)}" font-family="Inter" font-size="4" fill="#8B8578">${L[1]}</text>`;
+    y+=hh;
+  });
+  // pasto arriba
+  let grass='';for(let gx=X+3;gx<X+W;gx+=6){grass+=`<path d="M${gx},${TOP} C${gx-1},${TOP-2.5} ${gx-1.5},${TOP-4} ${gx-2},${TOP-5}" stroke="#4F6B3A" stroke-width=".9" fill="none" stroke-linecap="round"/><path d="M${gx+1.5},${TOP} C${gx+2},${TOP-2.5} ${gx+2.5},${TOP-3.5} ${gx+3.5},${TOP-4.5}" stroke="#39512A" stroke-width=".8" fill="none" stroke-linecap="round"/>`}
+  if(['12','11','13','04'].includes(f.n)) grass=grass.replace(/#4F6B3A/g,'#5E7570').replace(/#39512A/g,'#4E6560');
+  return `<svg viewBox="0 0 96 148" width="100%" xmlns="http://www.w3.org/2000/svg">
+    ${grass}${s}
+    <rect x="${X}" y="${TOP}" width="${W}" height="${(y-TOP).toFixed(1)}" fill="none" stroke="#452A17" stroke-width=".8"/>
+    ${lab}</svg>`;
+}
+const slot=document.getElementById('fichaslot');
+slot.innerHTML=FICHAS.map((f,i)=>`
+<section class="page" data-cap="Cap. 3 · Ficha ${f.n} — ${f.nombre}" style="--fcolor:${f.color}">
+  <div class="pad">
+    <div class="fhead">
+      <div class="fnum">${f.n}</div>
+      <div><h1>${f.nombre}</h1><div class="fety">${f.ety}</div></div>
+      <div class="fchip"><span class="orden">${f.orden}</span><div class="apodo">«${f.apodo}»</div></div>
+    </div>
+    <div class="fbody">
+      <div>
+        <div class="perfilbox">${perfilSVG(f,i)}<div class="pcap">Perfil típico (esquema)</div></div>
+        <div class="facts">${f.facts.map(x=>`<div class="frow"><span class="fk">${x[0]}</span><span class="fv">${x[1]}</span></div>`).join('')}</div>
+      </div>
+      <div class="fmain">
+        <div class="bloque"><h3>¿Cómo es? — composición</h3>${f.como.map(p=>`<p>${p}</p>`).join('')}</div>
+        <div class="bloque"><h3>¿Dónde aparece?</h3><p>${f.donde}</p></div>
+        <div class="bloque"><h3>¿Para qué sirve?</h3><p>${f.sirve}</p></div>
+        <div class="bloque"><h3>Limitantes y manejo</h3><ul class="puntos">${f.lim.map(x=>`<li>${x}</li>`).join('')}</ul></div>
+        <div class="dato"><span class="dk">¿Sabías que…?</span><p>${f.dato}</p></div>
+      </div>
+    </div>
+  </div>
+</section>`).join('');
+
+/* ================= foliado + índice ================= */
+const pages=[...document.querySelectorAll('section.page')];
+pages.forEach((pg,i)=>{
+  if(pg.hasAttribute('data-nofoot'))return;
+  const cap=pg.getAttribute('data-cap')||'';
+  const f=document.createElement('div');f.className='pfoot';
+  f.innerHTML=`<div class="meta"><span>Manual de Suelos del Uruguay${cap?' · '+cap:''}</span><span class="num">${i+1}</span></div>
+  <div class="strip"><i></i><i></i><i></i><i></i></div>`;
+  pg.appendChild(f);
+});
+document.querySelectorAll('[data-ref]').forEach(el=>{
+  const t=document.getElementById(el.getAttribute('data-ref'));
+  if(t){const pg=t.closest('section.page')||t.querySelector('section.page');
+    el.textContent=pages.indexOf(pg)+1;}
+});
+</script>
+</body>
+</html>
