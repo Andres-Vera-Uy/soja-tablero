@@ -13,29 +13,39 @@ guías, gráficos, presentaciones).
 
 Paleta de marca:
 
-| Token            | Valor     | Uso                                    |
-| ---------------- | --------- | -------------------------------------- |
-| `--prusia`       | `#003153` | Azul de Prusia. Color principal.       |
-| `--celeste`      | `#5B9BD5` | Acento, serie del año anterior.        |
-| `--celeste-soft` | `#D8E7F4` | Fondos suaves, chips.                  |
-| `--ink`          | `#0B2436` | Texto.                                 |
-| `--gris`         | `#5F7180` | Texto secundario, ejes.                |
-| `--crema`        | `#FAF5E9` | Fondo de página.                       |
-| `--card`         | `#FFFFFF` | Fondo de tarjetas.                     |
-| `--line`         | `#E4DCC9` | Bordes, líneas de grilla.              |
+| Token            | Valor     | Uso                                       | Contraste vs crema |
+| ---------------- | --------- | ----------------------------------------- | ------------------ |
+| `--prusia`       | `#15537F` | Azul acero. Color principal y serie actual. | 7,55:1           |
+| `--celeste`      | `#6BA3CE` | Serie del año anterior.                    | 2,51:1            |
+| `--celeste-soft` | `#D9E8F3` | Fondos suaves, chips.                      | —                 |
+| `--ink`          | `#0C2438` | Texto.                                     | 14,68:1           |
+| `--gris`         | `#5A6E7E` | Texto secundario, ejes.                    | 4,91:1            |
+| `--crema`        | `#FAF6EC` | Fondo de página.                           | —                 |
+| `--card`         | `#FFFFFF` | Fondo de tarjetas.                         | —                 |
+| `--line`         | `#E4DCC9` | Bordes, líneas de grilla.                  | —                 |
 
 Los neutros llevan un sesgo hacia el azul: el gris es azulado, no puro.
+
+**No cambiar estos valores a ojo.** La serie actual y la del año anterior no son
+categorías intercambiables: tienen orden temporal, así que forman una rampa
+**ordinal** de un solo matiz. Si se retocan, hay que revalidar lightness
+monótona, salto adyacente ≥ 0,06 y extremo claro ≥ 2:1 contra la crema. El
+`#003153` que usaba el proyecto antes daba chroma 0,078 — tan bajo que leía
+como pizarra casi negra en vez de azul; por eso se subió a `#15537F`.
 
 ### Lo que no es color de marca
 
 Los colores del semáforo son semánticos y **no cambian** cuando cambia el color
 principal — codifican estado, no identidad:
 
-| Token       | Valor     | Estado    |
-| ----------- | --------- | --------- |
-| `--verde`   | `#2F7D4F` | Favorable |
-| `--ambar`   | `#B97F14` | Atención  |
-| `--naranja` | `#E8743B` | Alerta    |
+| Token       | Valor     | Estado    | Contraste vs crema |
+| ----------- | --------- | --------- | ------------------ |
+| `--verde`   | `#2F7D4F` | Favorable | 4,67:1             |
+| `--ambar`   | `#B97F14` | Atención  | 3,19:1             |
+| `--naranja` | `#D9622C` | Alerta    | 3,39:1             |
+
+El naranja era `#E8743B`, que daba 2,78:1 y quedaba bajo el piso de 3:1 para
+marcas. Se corrigió a `#D9622C` sin cambiar su lectura de alerta.
 
 ## Dónde vive el color
 
