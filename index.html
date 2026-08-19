@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>SOJA — Tablero de venta</title>
 <meta name="description" content="Tablero familiar de venta de soja — precio local, semáforo de acción y gráfico diario.">
-<meta name="theme-color" content="#13492B">
+<meta name="theme-color" content="#003153">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="SOJA">
@@ -15,9 +15,9 @@
 <body>
 <style>
 :root{
-  --ink:#102319; --prusia:#13492B; --celeste:#5E9E6A; --celeste-soft:#DCEBD3;
-  --crema:#F7F4E7; --card:#FFFFFF; --line:#DFE2CD;
-  --verde:#2F7D4F; --ambar:#B97F14; --ambar-bg:#FBF1DC; --naranja:#E8743B; --gris:#5E6E60;
+  --ink:#0B2436; --prusia:#003153; --celeste:#5B9BD5; --celeste-soft:#D8E7F4;
+  --crema:#FAF5E9; --card:#FFFFFF; --line:#E4DCC9;
+  --verde:#2F7D4F; --ambar:#B97F14; --ambar-bg:#FBF1DC; --naranja:#E8743B; --gris:#5F7180;
   --fd:"Avenir Next","Seravek",system-ui,sans-serif;
   --fm:ui-monospace,"SF Mono",Menlo,monospace;
 }
@@ -244,16 +244,16 @@ function draw(){
   // grid + y axis
   const step = (ymax-ymin)>80?20:10;
   for(let v=Math.ceil(ymin/step)*step; v<=ymax; v+=step)
-    g+=`<line x1="${P.l}" x2="${W-P.r}" y1="${y(v)}" y2="${y(v)}" stroke="#DFE2CD" stroke-width="1"/>
-        <text x="${P.l-8}" y="${y(v)+4}" fill="#5E6E60" font-size="11" text-anchor="end" font-family="var(--fm)">${v}</text>`;
-  g+=`<text x="${P.l-8}" y="${P.t-2}" fill="#5E6E60" font-size="10.5" text-anchor="end" font-weight="600">US$/t</text>`;
+    g+=`<line x1="${P.l}" x2="${W-P.r}" y1="${y(v)}" y2="${y(v)}" stroke="#E4DCC9" stroke-width="1"/>
+        <text x="${P.l-8}" y="${y(v)+4}" fill="#5F7180" font-size="11" text-anchor="end" font-family="var(--fm)">${v}</text>`;
+  g+=`<text x="${P.l-8}" y="${P.t-2}" fill="#5F7180" font-size="10.5" text-anchor="end" font-weight="600">US$/t</text>`;
   // x ticks: month starts
   const d0=new Date(tmin); let mt=Date.UTC(d0.getUTCFullYear(),d0.getUTCMonth()+1,1);
   const MN=["ene","feb","mar","abr","may","jun","jul","ago","sep","oct","nov","dic"];
   for(; mt<=tmax; mt=new Date(mt).setUTCMonth(new Date(mt).getUTCMonth()+1,1)){
     const dd=new Date(mt);
     if(months>6 && dd.getUTCMonth()%2===0 || months<=6)
-      g+=`<text x="${x(mt)}" y="${H-P.b+18}" fill="#5E6E60" font-size="11" text-anchor="middle">${MN[dd.getUTCMonth()]}-${String(dd.getUTCFullYear()).slice(2)}</text>`;
+      g+=`<text x="${x(mt)}" y="${H-P.b+18}" fill="#5F7180" font-size="11" text-anchor="middle">${MN[dd.getUTCMonth()]}-${String(dd.getUTCFullYear()).slice(2)}</text>`;
   }
   // thresholds
   if(s.th) for(const t of CFG.thresholds)
@@ -261,13 +261,13 @@ function draw(){
         <text x="${W-P.r-4}" y="${y(t[0]+off)-5}" fill="${t[2]}" font-size="10.5" text-anchor="end" font-weight="600">${t[1]} ${(t[0]+off).toFixed(0)} US$/t</text>`;
   // series
   if(s.ma) g+=`<path d="${line(vis("ma"))}" fill="none" stroke="#8B98A3" stroke-width="1.3" stroke-dasharray="2 4"/>`;
-  if(s.prev) g+=`<path d="${line(vis("prev"))}" fill="none" stroke="#5E9E6A" stroke-width="1.5" stroke-dasharray="7 4" opacity="0.9"/>`;
+  if(s.prev) g+=`<path d="${line(vis("prev"))}" fill="none" stroke="#5B9BD5" stroke-width="1.5" stroke-dasharray="7 4" opacity="0.9"/>`;
   const nv=vis("now");
-  g+=`<path d="${line(nv)} L ${x(nv[nv.length-1][0])} ${H-P.b} L ${x(nv[0][0])} ${H-P.b} Z" fill="#13492B" opacity="0.05" stroke="none"/>`;
-  g+=`<path d="${line(nv)}" fill="none" stroke="#13492B" stroke-width="2.4"/>`;
+  g+=`<path d="${line(nv)} L ${x(nv[nv.length-1][0])} ${H-P.b} L ${x(nv[0][0])} ${H-P.b} Z" fill="#003153" opacity="0.05" stroke="none"/>`;
+  g+=`<path d="${line(nv)}" fill="none" stroke="#003153" stroke-width="2.4"/>`;
   const lp=nv[nv.length-1];
-  g+=`<circle cx="${x(lp[0])}" cy="${y(lp[1]+off)}" r="4.5" fill="#13492B"/>
-      <text x="${x(lp[0])-8}" y="${y(lp[1]+off)-10}" fill="#13492B" font-size="12" font-weight="700" text-anchor="end">${f1(lp[1]+off)} US$/t</text>`;
+  g+=`<circle cx="${x(lp[0])}" cy="${y(lp[1]+off)}" r="4.5" fill="#003153"/>
+      <text x="${x(lp[0])-8}" y="${y(lp[1]+off)-10}" fill="#003153" font-size="12" font-weight="700" text-anchor="end">${f1(lp[1]+off)} US$/t</text>`;
   if(mode==="local") for(const hp of CFG.local_history){
     const th=parse(hp[0]); if(th<tmin||th>tmax) continue;
     g+=`<line x1="${x(th)}" x2="${x(th)}" y1="${y(hp[1])}" y2="${y(hp[2])}" stroke="#2F7D4F" stroke-width="5" stroke-linecap="round" opacity="0.9"/>`;
